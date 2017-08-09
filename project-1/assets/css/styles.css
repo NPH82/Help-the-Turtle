@@ -1,0 +1,41 @@
+/*GENERAL*/
+
+#main-row {
+  color: #6d4c41;
+}
+
+
+/*NAVBAR*/
+
+#logo {
+  height: 50px;
+  padding: 10px 20px;
+}
+
+
+/*MAIN*/
+
+
+
+/*FOOTER*/
+
+
+
+/*RESPONSIVE DESIGN*/
+
+@media screen and (max-width: 600px) {
+
+}
+
+
+/*STICKY FOOTER*/
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
