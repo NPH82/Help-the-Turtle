@@ -22,7 +22,10 @@ html {
 
 #navbar ul .small-link {
   color: #757575;
+}
 
+#mobile-nav {
+  padding-top: 30px;
 }
 
 
