@@ -1,7 +1,18 @@
 $( document ).ready(function(){
 
-  //Front-end Sidebar Menu
+  //Sidebar Menu
   $(".button-collapse").sideNav();
+
+  //Floating button
+  $("#report-button").on("mouseover", function(){
+    $("#report-button").children("a").removeClass("pulse");
+    $("#report-button").children("a").children("i").text("sms");
+  });
+
+  $("#report-button").on("mouseout", function(){
+    $("#report-button").children("a").children("i").text("add");
+    console.log("Hovered!");
+  });
 
 
   //Firebase Initialization

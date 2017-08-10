@@ -1,7 +1,11 @@
 /*GENERAL*/
 
 #main-row {
-  color: #6d4c41;
+  color: #4e342e;
+}
+
+html {
+  font-family: 'Montserrat';
 }
 
 
@@ -10,6 +14,15 @@
 #logo {
   height: 50px;
   padding: 10px 20px;
+}
+
+#nav-mobile li {
+  font-weight: 600;
+}
+
+#navbar ul .small-link {
+  color: #757575;
+
 }
 
 
