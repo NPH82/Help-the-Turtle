@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<title>Report a Beached Turtle</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/styles.css">
@@ -15,78 +16,105 @@
 
 	<!-- NAVBAR -->
 	<nav id="navbar" class="nav-extended green lighten-1">
-	<div class="nav-wrapper">
-		<a href="#" class="brand-logo"><img id="logo" src="assets/images/turtlehero-logo.png" alt="turtlehero Logo"></a>
-		<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="#">Report Turtle</a></li>
-			<li><a href="#">After Reporting</a></li>
-			<li><a href="#">Help</a></li>
-			<li><a href="http://www.turtlerescueleague.com" target="blank">Turtle Rescue League</a></li>
-		</ul>
-		<ul class="side-nav" id="mobile-demo">
-			<li><a href="#">Report Turtle</a></li>
-			<li><a href="#">After Reporting</a></li>
-			<div class="divider">
-			</div>
-			<li><a href="#">Help</a></li>
-			<li><a href="http://www.turtlerescueleague.com" target="blank">Turtle Rescue League</a></li>
-			<div class="divider">
-			</div>
-		</ul>
-	</div>
-	<div class="nav-content">
-		<ul class="tabs tabs-transparent">
-			<li class="tab"><a href="#tab1">Reported</a></li>
-			<li class="tab"><a class="active" href="#tab2">Rescuing</a></li>
-			<li class="tab"><a href="#tab3">Rescued</a></li>
-		</ul>
-	</div>
-</nav>
-<div id="tab1" class="col s12"></div>
-<div id="tab2" class="col s12"></div>
-<div id="tab3" class="col s12"></div>
+		<div class="nav-wrapper">
+			<a href="index.html" class="brand-logo"><img id="logo" src="assets/images/turtlehero-logo.png" alt="turtlehero Logo"></a>
+			<a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
+			<ul id="nav-top" class="right hide-on-med-and-down">
+				<li><a href="index.html">Report Turtle</a></li>
+				<li><a href="#">After Reporting</a></li>
+				<li><a href="#">Help</a></li>
+				<li><a href="http://www.turtlerescueleague.com" target="blank">Turtle Rescue League</a></li>
+			</ul>
+			<ul class="side-nav" id="mobile-nav">
+				<li><a href="index.html">Report Turtle</a></li>
+				<li><a href="#">After Reporting</a></li>
+				<div class="divider">
+				</div>
+				<li><a href="#" class="small-link"><i class="material-icons">help</i>Help</a></li>
+				<li><a href="http://www.turtlerescueleague.com" class="small-link" target="blank"><i class="material-icons">link</i>Turtle Rescue League</a></li>
+				<div class="divider">
+				</div>
+			</ul>
+		</div>
+		<div class="nav-content">
+			<ul class="tabs tabs-transparent">
+				<li class="tab"><a class="active" href="#tab1">Reported</a></li>
+				<li class="tab"><a href="#tab2">Rescuing</a></li>
+				<li class="tab"><a href="#tab3">Rescued</a></li>
+			</ul>
+		</div>
+	</nav>
 
-	<!-- MAIN SECTOIN-->
+	<!-- MAIN SECTOIN -->
 	<main>
 
-		<!-- MAIN ROW -->
-		<div class="row" id="main-row">
-			<div class="container">
+		<!-- REPORTED TAB -->
+		<div id="tab1" class="col s12">
 
-				<!--TURTLE CARDS-->
-				<div class="col s12 m6">
-					<div class="card">
-						<div class="card-image">
-							<p>This is a turtle information card</p>
-							<p>Turtle information goes here.</p>
+			<!-- MAIN ROW -->
+			<div class="row" id="main-row">
+				<div class="container">
+					<div class="col s12 m6">
+
+					<!--TURTLE CARDS-->
+						<div class="card hoverable">
+					    <div class="card-image waves-effect waves-block waves-light">
+					      <img class="activator" src="assets/images/turtle.jpg">
+					    </div>
+					    <div class="card-content">
+					      <span class="card-title activator green-text text-lighten-1">Turtle 12<i class="material-icons right">more_vert</i></span>
+					      <p>Reported Monday, Aug. 10</p>
+					    </div>
+					    <div class="card-reveal">
+					      <span class="card-title green-text text-lighten-1">Location<i class="material-icons right">close</i></span>
+					      <p>Here is some more information about the location of this reported turtle that is revealed once clicked on.</p>
+					    </div>
+					  </div>
+					</div>
+
+					<div class="col s12 m6">
+						<div class="card hoverable">
+							<div class="card-image waves-effect waves-block waves-light">
+								<img class="activator" src="assets/images/turtle.jpg">
+							</div>
+							<div class="card-content">
+								<span class="card-title activator green-text text-lighten-1">Turtle 13<i class="material-icons right">more_vert</i></span>
+								<p>Reported Tuesday, Aug. 11</p>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title green-text text-lighten-1">Location<i class="material-icons right">close</i></span>
+								<p>Here is some more information about the location of this reported turtle that is revealed once clicked on.</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col s12 m6">
-					<div class="card">
-						<div class="card-image">
-							<p>This is a turtle information card</p>
-							<p>Turtle information goes here.</p>
-						</div>
-					</div>
 				</div>
-
-				<!-- FIXED ACTION BUTTON -->
-				<div id="add-button" class="fixed-action-btn horizontal click-to-toggle">
-					<a class="btn-floating waves-effect waves-light pulse btn-large green lighten-1 modal-trigger" href="#modal">
-              <i class="material-icons">sms_failed</i>
-          </a>
-				</div>
-
 			</div>
+		</div>
+		<!-- RESCUING TAB -->
+		<div id="tab2" class="col s12"></div>
+			<!-- Begin code here -->
+
+		<!-- RESCUED TAB -->
+		<div id="tab3" class="col s12"></div>
+			<!-- Begin code here -->
+
+		<!-- FIXED ACTION BUTTON -->
+		<div id="report-button" class="fixed-action-btn hover-to-toggle">
+			<a class="btn-floating waves-effect waves-light pulse btn-large yellow darken-1">
+					<i class="material-icons">add</i>
+			</a>
+			<ul>
+				<li><a class="btn-floating green lighten-1"><i class="material-icons">phone</i></a></li>
+			</ul>
 		</div>
 		<div id="map" class='col s12'></div>
 	</main>
 
+
+
 	<!-- FOOTER -->
-	<footer class="page-footer brown darken-1 grey-text text-lighten-4">
+	<footer class="page-footer brown darken-3 grey-text text-lighten-4">
 		<div class="container">
 			<div class="col sm12 center-align">
 				© 2017 Turtle Power
