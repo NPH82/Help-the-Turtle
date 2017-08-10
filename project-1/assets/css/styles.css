@@ -39,3 +39,13 @@ body {
 main {
   flex: 1 0 auto;
 }
+
+#map {
+	height: 200px;
+	width: 100%;
+}
+
+#userLocation {
+	height:50px;
+	width: 50px;
+}
