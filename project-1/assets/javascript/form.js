@@ -1,20 +1,18 @@
 var latitude = "latitude";
 var longitude = "longitude";
-/* global firebase moment */
-// Steps to complete:
-// 1. Initialize Firebase
+
 // Initialize Firebase
   var config = {
-    apiKey: "apiKey",
-    authDomain: "authDomain",
-    databaseURL: "databaseURL",
-    projectId: "projectId",
-    storageBucket: "storageBucket",
-    messagingSenderId: "messagingSenderId"
+    apiKey: "AIzaSyBZAuUkeBYHmxfplYwuf-7wNHwKUFSLZcU",
+    authDomain: "turtle-project.firebaseapp.com",
+    databaseURL: "https://turtle-project.firebaseio.com",
+    projectId: "turtle-project",
+    storageBucket: "",
+    messagingSenderId: "919793437616"
   };
   firebase.initializeApp(config);
 
-// 2. Button for adding new turtle form information to the database
+//function for button to add new turtle form information to the database
 $("#turtle-btn").on("click", function(event) {
   event.preventDefault();
   firebase.database().ref().push({
