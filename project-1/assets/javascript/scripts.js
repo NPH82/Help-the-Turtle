@@ -1,6 +1,4 @@
-
-
-  //Sidebar Menu
+ //Sidebar Menu
   $(".button-collapse").sideNav();
 
   //Floating button
