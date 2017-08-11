@@ -1,9 +1,5 @@
 /*GENERAL*/
 
-#main-row {
-  color: #4e342e;
-}
-
 html {
   font-family: 'Montserrat';
 }
@@ -16,8 +12,17 @@ html {
   padding: 10px 20px;
 }
 
+#nav-top li a {
+  font-weight: 800;
+  color: #fdd835;
+}
+
 #nav-mobile li {
   font-weight: 600;
+}
+
+#navbar {
+    padding-right: 20px;
 }
 
 #navbar ul .small-link {
@@ -28,6 +33,10 @@ html {
   padding-top: 30px;
 }
 
+#mobile-nav li .selected {
+  background-color: #f5f5f5;
+}
+
 
 /*MAIN*/
 
@@ -35,18 +44,30 @@ main {
   padding-top: 20px;
 }
 
+#main-row {
+  color: #4e342e;
+}
+
 #map {
   margin-bottom: 20px;
 }
 
-/*FOOTER*/
+/*MODALS*/
 
+#modals {
+  color: #4e342e;
+}
 
+#submit {
+  font-weight: 800;
+}
 
-/*RESPONSIVE DESIGN*/
+#call {
+  font-weight: 800;
+}
 
-@media screen and (max-width: 600px) {
-
+#mark {
+  font-weight: 800;
 }
 
 
@@ -70,4 +91,11 @@ main {
 #userLocation {
 	height:50px;
 	width: 50px;
+}
+
+
+/*RESPONSIVE DESIGN*/
+
+@media screen and (max-width: 600px) {
+
 }
