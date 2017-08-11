@@ -94,26 +94,38 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 var latitude = "latitude";
 var longitude = "longitude";
 $("#submit").on("click", function(event) {
- event.preventDefault();
- firebase.database().ref().push({
-   latitude: $('#latitude-input').val(),
-   longitude: $('#longitude-input').val(),
-   landmarks: $('#landmarks-input').val(),
-   name: $('#name-input').val(),
-   phonenumber: $('#phoneNumber-input').val(),
-   email: $('#email-input').val(),
-   createdAt: firebase.database.ServerValue.TIMESTAMP
+  event.preventDefault();
+   firebase.database().ref().push({
+     latitude: $('#latitude-input').val(),
+     longitude: $('#longitude-input').val(),
+     landmarks: $('#landmarks-input').val(),
+     name: $('#name-input').val(),
+     phonenumber: $('#phoneNumber-input').val(),
+     email: $('#email-input').val(),
+     createdAt: firebase.database.ServerValue.TIMESTAMP
  });
- Materialize.toast("Your turtle has been reported.", 2000);
+  //Clears input fields
+  $("#latitude-input").val("");
+  $("#longitude-input").val("");
+  $("#landmarks-input").val("");
+  $("#name-input").val("");
+  $("#phoneNumber-input").val("");
+  $("#email-input").val("");
+  //Alerts user
+  Materialize.toast("Your turtle has been reported.", 2000);
 });
 
-//Submit location to database
+//Send location to database
 $("#mark").on("click", function(event) {
  event.preventDefault();
- firebase.database().ref().push({
-   latitude: $('#latitude-input').val(),
-   longitude: $('#longitude-input').val(),
-   createdAt: firebase.database.ServerValue.TIMESTAMP
- });
- Materialize.toast("Your location has been marked.", 2000);
+  firebase.database().ref().push({
+    latitude: $('#latitude-input').val(),
+    longitude: $('#longitude-input').val(),
+    createdAt: firebase.database.ServerValue.TIMESTAMP
+  });
+  //Clears input fields
+  $("#latitude-input").val("");
+  $("#longitude-input").val("");
+  //Alerts user
+  Materialize.toast("Your location has been marked.", 2000);
 });
