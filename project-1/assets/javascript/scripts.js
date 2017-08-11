@@ -10,7 +10,7 @@ $(document).ready(function() {
       closeOnClick: true,
     }
   );
-  
+
   //Floating button
   $("#report-button").on("mouseover", function() {
     $("#report-button").children("a").removeClass("pulse");
@@ -90,7 +90,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
  infoWindow.open(map);
 }
 
-//Function for button to add new turtle form information to the database
+//Submit message to database
 var latitude = "latitude";
 var longitude = "longitude";
 $("#submit").on("click", function(event) {
@@ -105,4 +105,15 @@ $("#submit").on("click", function(event) {
    createdAt: firebase.database.ServerValue.TIMESTAMP
  });
  Materialize.toast("Your turtle has been reported.", 2000);
+});
+
+//Submit location to database
+$("#mark").on("click", function(event) {
+ event.preventDefault();
+ firebase.database().ref().push({
+   latitude: $('#latitude-input').val(),
+   longitude: $('#longitude-input').val(),
+   createdAt: firebase.database.ServerValue.TIMESTAMP
+ });
+ Materialize.toast("Your location has been marked.", 2000);
 });
