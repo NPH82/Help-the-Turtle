@@ -9,7 +9,6 @@
 
   $("#report-button").on("mouseout", function(){
     $("#report-button").children("a").children("i").text("add");
-    console.log("Hovered!");
   });
 
 
