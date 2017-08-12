@@ -100,14 +100,12 @@
 		<div id="tab3" class="col s12"></div>
 			<!-- Begin code here -->
 
-		<!-- FLOATING BUTTON -->
+		<!-- FLOATING BUTTONS -->
 		<div id="report-button" class="fixed-action-btn hover-to-toggle">
-			<a id="button-link" class="btn-floating waves-effect waves-light pulse btn-large yellow darken-1 modal-trigger" href="#location-modal">
-					<i class="material-icons">add</i>
-			</a>
+			<a id="button-link" class="btn-floating waves-effect waves-light pulse btn-large yellow darken-1 modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Send location" href="#location-modal"><i class="material-icons">add</i></a>
 			<ul>
-				<li><a class="btn-floating green waves-effect waves-light modal-trigger" href="#message-modal"><i class="material-icons">chat</i></a></li>
-				<li><a class="btn-floating blue waves-effect waves-light modal-trigger" href="#phone-modal"><i class="material-icons">phone</i></a></li>
+				<li><a class="btn-floating green waves-effect waves-light modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Send location with comments" href="#message-modal"><i class="material-icons">chat</i></a></li>
+				<li><a class="btn-floating blue waves-effect waves-light modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Call Rescue Center" href="#phone-modal"><i class="material-icons">phone</i></a></li>
 			</ul>
 		</div>
 
@@ -189,12 +187,12 @@
 		<div id="location-modal" class="modal bottom-sheet">
 			<div class="modal-content">
 				<h5>Report New Turtle</h5>
-				<p>Would you like to mark your current location for the Rescue Center? Please ensure you are near the turtle.</p>
+				<p>Would you like to send your current location to the Rescue Center? Please ensure you are near the turtle.</p>
 			</div>
 
 			<div class="modal-footer">
 				<a href="#!" class="modal-action waves-effect waves-black btn-flat modal-close">Cancel</a>
-				<button id="mark" class="btn green yellow-text waves-effect waves-light modal-close">Mark</button>
+				<button id="mark" class="btn green yellow-text waves-effect waves-light modal-close">Send</button>
 			</div>
 		</div>
 
