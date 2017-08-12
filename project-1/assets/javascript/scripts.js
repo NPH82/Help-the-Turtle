@@ -144,7 +144,7 @@ $(document).ready(function() {
   //Floating button
   $("#report-button").on("mouseover", function() {
       $("#report-button").children("a").removeClass("pulse");
-      $("#report-button").children("a").children("i").text("location_on");
+      $("#report-button").children("a").children("i").text("place");
   });
   $("#report-button").on("mouseout", function() {
       $("#report-button").children("a").children("i").text("add");
