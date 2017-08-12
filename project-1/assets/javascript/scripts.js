@@ -10,6 +10,9 @@ function initMap() {
   window.mapsLoaded = true;
 }
 
+//Geolocation
+var map, infoWindow;
+var marker;
 function notInitMap(id) {
 
   map = new google.maps.Map(document.getElementById('map'));
@@ -23,13 +26,12 @@ function notInitMap(id) {
             lat: position.coords.latitude,
             lng: position.coords.longitude
         };
-        marker = new google.maps.Marker({
-          map: map,
-          position: pos,
-          animation: google.maps.Animation.DROP
-        })
-
         var turtleStatus = "reported";
+        marker = new google.maps.Marker({
+          postion: pos,
+          map: map,
+          animation: google.maps.Animation.DROP
+        });
         marker.setPosition(pos);
         map.setCenter(pos);
         map.setZoom(16);
@@ -45,6 +47,7 @@ function notInitMap(id) {
           status: turtleStatus,
           dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
+        
     },
     function() {
       handleLocationError(true, infoWindow, map.getCenter());
@@ -97,10 +100,6 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log("User signed out");
   }
 })
-
-//Geolocation
-var map, infoWindow;
-var marker;
 
 //Send location
 $("#send").on("click", function(event) {
