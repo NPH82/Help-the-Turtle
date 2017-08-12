@@ -2,14 +2,17 @@
 //FRONT END
 //////////////////////////////////////////////////////////
 
-$(document).ready(function() {
-
+//parallax page
+ $(document).ready(function(){
+      $('.parallax').parallax();
+   
   //Sidebar Menu
   $(".button-collapse").sideNav({
       menuWidth: 200, // Default is 300
       closeOnClick: true,
     }
   );
+
 
   //Floating button
   $("#report-button").on("mouseover", function() {
