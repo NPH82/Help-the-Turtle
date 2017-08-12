@@ -52,6 +52,12 @@ main {
   margin-bottom: 20px;
 }
 
+#steps div {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 0 80px;
+}
+
 /*MODALS*/
 
 #modals {
@@ -96,6 +102,8 @@ main {
 
 /*RESPONSIVE DESIGN*/
 
-@media screen and (max-width: 600px) {
-
+@media screen and (min-width: 601px) {
+  #steps div {
+    padding: 20px;
+  }
 }
