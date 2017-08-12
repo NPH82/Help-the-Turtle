@@ -1,96 +1,72 @@
+//////////////////////////////////////////////////////////
+//BACK END
+//////////////////////////////////////////////////////////
+
+//Google Maps API apikey: AIzaSyA4PbxtjFAOdO90WsLjM_SXs_sfUEb7OM0
+
 window.mapsLoaded = false;
 
 function initMap() {
   window.mapsLoaded = true;
 }
 
+//Geolocation
+var map, infoWindow;
+var marker;
 function notInitMap(id) {
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 41.669, lng: -70.296 },
-        zoom: 8
-    });
 
-    infoWindow = new google.maps.InfoWindow;
+  map = new google.maps.Map(document.getElementById('map'));
 
-    //using HTML5 geolocation
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-            
-            var turtleStatus = "reported";
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('<p>turtle</p>');
-            infoWindow.open(map);
-            map.setCenter(pos);
-            map.setZoom(16);
-            // grabbing location and creating JSON on Firebase
-            firebase.database().ref().push({
-                locationLat: position.coords.latitude,
-                locationLong: position.coords.longitude,
-                status: turtleStatus,
-                dateAdded: firebase.database.ServerValue.TIMESTAMP
-            });
-        }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
+  infoWindow = new google.maps.InfoWindow;
 
-        })
-    } else {
-        //Browser doesn't suppport Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
+  //using HTML5 geolocation
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+        };
 
+        var turtleStatus = "reported";
+        marker = new google.maps.Marker({
+          postion: pos,
+          map: map,
+          animation: google.maps.Animation.DROP
+        });
+        
+        marker.setPosition(pos);
+        map.setCenter(pos);
+        map.setZoom(16);
+
+        // Getting location and creating JSON on Firebase
+        firebase.database().ref().push({
+          locationLat: position.coords.latitude,
+          locationLong: position.coords.longitude,
+          comment: $("#comment-input").val(null),
+          name: $("#name-input").val(null),
+          phonenumber: $("#phoneNumber-input").val(null),
+          email: $("#email-input").val(null),
+          status: turtleStatus,
+          dateAdded: firebase.database.ServerValue.TIMESTAMP
+        });
+        
+    },
+    function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    })
+  } else {
+      //Browser doesn't suppport Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+  }
 }
-
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-        'Error: We can\'t get your location.  Please refresh and accept.' :
-        'Error: Your browser doesn\'t support geolocation.');
-    infoWindow.open(map);
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+      'Error: We can\'t get your location.  Please refresh and accept.' :
+      'Error: Your browser doesn\'t support geolocation.');
+  infoWindow.open(map);
 }
-
-
-
-
-//////////////////////////////////////////////////////////
-//FRONT END
-//////////////////////////////////////////////////////////
-
-//parallax page
-$(document).ready(function() {
-    $('.parallax').parallax();
-
-    //Sidebar Menu
-    $(".button-collapse").sideNav({
-        menuWidth: 200, // Default is 300
-        closeOnClick: true,
-    });
-
-
-    //Floating button
-    $("#report-button").on("mouseover", function() {
-        $("#report-button").children("a").removeClass("pulse");
-        $("#report-button").children("a").children("i").text("location_on");
-    });
-    $("#report-button").on("mouseout", function() {
-        $("#report-button").children("a").children("i").text("add");
-    });
-
-    //Trigger modal
-    $(".modal").modal();
-
-});
-
-
-
-
-//////////////////////////////////////////////////////////
-//BACK END
-//////////////////////////////////////////////////////////
 
 //Firebase Initialization
 var config = {
@@ -105,127 +81,80 @@ firebase.initializeApp(config);
 
 //Authenticating Firebase Anonymously
 firebase.auth().signInAnonymously().catch(function(error) {
-    //handling errors
-    var errorCode = error.code;
-    var errorMessage = error.message;
+  //handling errors
+  var errorCode = error.code;
+  var errorMessage = error.message;
 
-    if (errorCode === 'auth/operation-not-allowed') {
-        alert('You must enable Anonymous auth in Firebase Console');
-    } else {
-        console.error(error);
-    }
+  if (errorCode === 'auth/operation-not-allowed') {
+      alert('You must enable Anonymous auth in Firebase Console');
+  } else {
+      console.error(error);
+  }
 });
 
-//creates User Account
+//Creates User Account
 firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        var isAnonymous = user.isAnonymous;
-        var uid = user.id;
-        console.log("grabbing user");
-    } else {
-        console.log("user signed out");
-    }
-
+  if (user) {
+      var isAnonymous = user.isAnonymous;
+      var uid = user.id;
+      console.log("Locating user");
+  } else {
+      console.log("User signed out");
+  }
 })
 
-//Google Maps API apikey: AIzaSyA4PbxtjFAOdO90WsLjM_SXs_sfUEb7OM0
-
-//Geolocation
-var map, infoWindow;
-var marker;
+//Send location
 $("#send").on("click", function(event) {
-    event.preventDefault();
-    notInitMap();
-}); //{
-//    map = new google.maps.Map(document.getElementById('map'), {
-//      center: {lat: 41.669, lng: -70.296},
-//      zoom: 8
-//    });
+  event.preventDefault();
+  notInitMap();
+  //Alerts user:
+  Materialize.toast("Your location has been sent.", 2000);
+});
 
-//    infoWindow = new google.maps.InfoWindow;
-
-//    //using HTML5 geolocation
-//    if (navigator.geolocation) {
-//      navigator.geolocation.getCurrentPosition(function(position) {
-//        var pos = {
-//          lat: position.coords.latitude,
-//          lng: position.coords.longitude
-//        };
-//        var turtleImage = '<img id="userLocation" src="assets/images/turtle-face.jpg" alt="turtle-pic"><p>Turtle Savior</p>';
-//        var turtleStatus = "reported";
-//         infoWindow.setPosition(pos);
-//        infoWindow.setContent(turtleImage);
-//        infoWindow.open(map);
-//        map.setCenter(pos);
-//        map.setZoom(16);
-//         // grabbing location and creating JSON on Firebase
-//         firebase.database().ref().push({
-//         locationLat: position.coords.latitude,
-//         locationLong: position.coords.longitude,
-//         status: turtleStatus,
-//         dateAdded: firebase.database.ServerValue.TIMESTAMP
-//       });
-//      }, function() {
-//        handleLocationError(true, infoWindow, map.getCenter());
-
-//      });
-//    } else {
-//      //Browser doesn't suppport Geolocation
-//      handleLocationError(false, infoWindow, map.getCenter());
-//    }
-//   }
-//    $("#latitude-input").val("");
-//   $("#longitude-input").val("");
-//   //Alerts user
-//   Materialize.toast("Your location has been sent.", 2000);
-// });
+//Submit form and send location
+$("#submit").on("click", function(event) {
+  event.preventDefault();
+  notInitMap();
+  //Alerts user:
+  Materialize.toast("Your report has been sent.", 2000);
+  //Clears form:
+  $("#comment-input").val("");
+  $("#name-input").val("");
+  $("#phoneNumber-input").val("");
+  $("#email-input").val("");
+});
 
 
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//  infoWindow.setPosition(pos);
-//  infoWindow.setContent(browserHasGeolocation ?
-//    'Error: We can\'t get your location.  Please refresh and accept.' :
-//    'Error: Your browser doesn\'t support geolocation.');
-//  infoWindow.open(map);
-// }
 
-//Submit message to database
-// var latitude = position.coords.latitude;
-// var longitude = position.coords.longitude;
-// $("#submit").on("click", function(event) {
-//   event.preventDefault();
-//    firebase.database().ref().push({
-//      latitude: childSnapshot.val().locationLat,
-//      longitude: childSnapshot.val().locationLong,
-//      landmarks: $('#landmarks-input').val(),
-//      name: $('#name-input').val(),
-//      phonenumber: $('#phoneNumber-input').val(),
-//      email: $('#email-input').val(),
-//      createdAt: firebase.database.ServerValue.TIMESTAMP
-//  });
-//   //Clears input fields
-//   $("#latitude-input").val("");
-//   $("#longitude-input").val("");
-//   $("#landmarks-input").val("");
-//   $("#name-input").val("");
-//   $("#phoneNumber-input").val("");
-//   $("#email-input").val("");
-//   //Alerts user
-//   Materialize.toast("Your turtle has been reported.", 2000);
-// });
 
-//Send location to database
-// $("#send").on("click", function(event) {
-//  event.preventDefault();
-//   // firebase.database().ref().on("child_added", function(childSnapshot){
-//   //   $("#latitude-input") = childSnapshot.val().locationLat;
-//   //   $("longitude-input") = childSnapshot.val().locationLong;
-//   //   createdAt: firebase.database.ServerValue.TIMESTAMP
-//   initMap();
-//   //});
-//   //Clears input fields
-//   $("#latitude-input").val("");
-//   $("#longitude-input").val("");
-//   //Alerts user
-//   Materialize.toast("Your location has been sent.", 2000);
-// });
+
+
+
+
+//////////////////////////////////////////////////////////
+//FRONT END
+//////////////////////////////////////////////////////////
+
+$(document).ready(function() {
+  //Parallax page
+  $('.parallax').parallax();
+
+  //Sidebar Menu
+  $(".button-collapse").sideNav({
+      menuWidth: 200, // Default is 300
+      closeOnClick: true,
+  });
+
+  //Floating button
+  $("#report-button").on("mouseover", function() {
+      $("#report-button").children("a").removeClass("pulse");
+      $("#report-button").children("a").children("i").text("location_on");
+  });
+  $("#report-button").on("mouseout", function() {
+      $("#report-button").children("a").children("i").text("add");
+  });
+
+  //Trigger modal
+  $(".modal").modal();
+
+});
