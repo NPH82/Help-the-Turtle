@@ -122,13 +122,13 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 }
 
 //Submit message to database
-var latitude = position.coords.latitude;
-var longitude = position.coords.longitude;
+// var latitude = position.coords.latitude;
+// var longitude = position.coords.longitude;
 $("#submit").on("click", function(event) {
   event.preventDefault();
    firebase.database().ref().push({
-     latitude: $('#latitude-input').val(),
-     longitude: $('#longitude-input').val(),
+     latitude: childSnapshot.val().locationLat,
+     longitude: childSnapshot.val().locationLong,
      landmarks: $('#landmarks-input').val(),
      name: $('#name-input').val(),
      phonenumber: $('#phoneNumber-input').val(),
@@ -149,9 +149,9 @@ $("#submit").on("click", function(event) {
 //Send location to database
 $("#mark").on("click", function(event) {
  event.preventDefault();
-  firebase.database().ref().push({
-    latitude: $('#latitude-input').val(),
-    longitude: $('#longitude-input').val(),
+  firebase.database().ref().on("child_added", function(childSnapshot){
+    $("#latitude-input") = childSnapshot.val().locationLat;
+    $("longitude-input") = childSnapshot.val().locationLong;
     createdAt: firebase.database.ServerValue.TIMESTAMP
   });
   //Clears input fields
