@@ -114,4 +114,7 @@ $(document).ready(function() {
   //Trigger modal
   $(".modal").modal();
 
+  //Parallax page
+  $('.parallax').parallax();
+
 });
