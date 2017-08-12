@@ -139,25 +139,25 @@ function resetForm() {
 //////////////////////////////////////////////////////////
 
 $(document).ready(function() {
-    //Parallax page
-    $('.parallax').parallax();
+  //Parallax page
+  $('.parallax').parallax();
 
-    //Sidebar Menu
-    $(".button-collapse").sideNav({
-        menuWidth: 200, // Default is 300
-        closeOnClick: true,
-    });
+  //Sidebar Menu
+  $(".button-collapse").sideNav({
+      menuWidth: 200, // Default is 300
+      closeOnClick: true,
+  });
 
-    //Floating button
-    $("#report-button").on("mouseover", function() {
-        $("#report-button").children("a").removeClass("pulse");
-        $("#report-button").children("a").children("i").text("location_on");
-    });
-    $("#report-button").on("mouseout", function() {
-        $("#report-button").children("a").children("i").text("add");
-    });
+  //Floating button
+  $("#report-button").on("mouseover", function() {
+      $("#report-button").children("a").removeClass("pulse");
+      $("#report-button").children("a").children("i").text("place");
+  });
+  $("#report-button").on("mouseout", function() {
+      $("#report-button").children("a").children("i").text("add");
+  });
 
-    //Trigger modal
-    $(".modal").modal();
+  //Trigger modal
+  $(".modal").modal();
 
 });
