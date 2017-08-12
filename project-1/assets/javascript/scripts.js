@@ -26,14 +26,12 @@ function notInitMap(id) {
             lat: position.coords.latitude,
             lng: position.coords.longitude
         };
-
         var turtleStatus = "reported";
         marker = new google.maps.Marker({
           postion: pos,
           map: map,
           animation: google.maps.Animation.DROP
         });
-        
         marker.setPosition(pos);
         map.setCenter(pos);
         map.setZoom(16);
