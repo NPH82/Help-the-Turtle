@@ -1,7 +1,7 @@
 /*GENERAL*/
 
-#main-row {
-  color: #6d4c41;
+html {
+  font-family: 'Montserrat';
 }
 
 
@@ -12,19 +12,62 @@
   padding: 10px 20px;
 }
 
+#nav-top li a {
+  font-weight: 600;
+  color: #fdd835;
+}
+
+#nav-mobile li {
+  font-weight: 600;
+}
+
+#navbar {
+    padding-right: 20px;
+}
+
+#navbar ul .small-link {
+  color: #757575;
+}
+
+#mobile-nav {
+  padding-top: 30px;
+}
+
+#mobile-nav li .selected {
+  background-color: #f5f5f5;
+}
+
 
 /*MAIN*/
 
+main {
+  padding-top: 20px;
+}
 
+#main-row {
+  color: #4e342e;
+}
 
-/*FOOTER*/
+#map {
+  margin-bottom: 20px;
+}
 
+/*MODALS*/
 
+#modals {
+  color: #4e342e;
+}
 
-/*RESPONSIVE DESIGN*/
+#submit {
+  font-weight: 800;
+}
 
-@media screen and (max-width: 600px) {
+#call {
+  font-weight: 800;
+}
 
+#mark {
+  font-weight: 800;
 }
 
 
@@ -38,4 +81,21 @@ body {
 
 main {
   flex: 1 0 auto;
+}
+
+#map {
+	height: 200px;
+	width: 100%;
+}
+
+#userLocation {
+	height:50px;
+	width: 50px;
+}
+
+
+/*RESPONSIVE DESIGN*/
+
+@media screen and (max-width: 600px) {
+
 }
