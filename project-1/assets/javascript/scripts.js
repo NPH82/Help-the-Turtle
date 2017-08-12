@@ -158,5 +158,5 @@ $("#mark").on("click", function(event) {
   $("#latitude-input").val("");
   $("#longitude-input").val("");
   //Alerts user
-  Materialize.toast("Your location has been marked.", 2000);
+  Materialize.toast("Your location has been sent.", 2000);
 });
