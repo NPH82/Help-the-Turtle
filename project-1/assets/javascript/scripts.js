@@ -33,10 +33,14 @@ function notInitMap(id) {
 
         // Getting location and creating JSON on Firebase
         firebase.database().ref().push({
-            locationLat: position.coords.latitude,
-            locationLong: position.coords.longitude,
-            status: turtleStatus,
-            dateAdded: firebase.database.ServerValue.TIMESTAMP
+          locationLat: position.coords.latitude,
+          locationLong: position.coords.longitude,
+          comment: $("#comment-input").val(null),
+          name: $("#name-input").val(null),
+          phonenumber: $("#phoneNumber-input").val(null),
+          email: $("#email-input").val(null),
+          status: turtleStatus,
+          dateAdded: firebase.database.ServerValue.TIMESTAMP
         });
     },
     function() {
@@ -94,12 +98,32 @@ firebase.auth().onAuthStateChanged(function(user) {
 //Geolocation
 var map, infoWindow;
 var marker;
+
+//Send location
 $("#send").on("click", function(event) {
   event.preventDefault();
   notInitMap();
-  //Alert user:
+  //Alerts user:
   Materialize.toast("Your location has been sent.", 2000);
 });
+
+//Submit form and send location
+$("#submit").on("click", function(event) {
+  event.preventDefault();
+  notInitMap();
+  //Alerts user:
+  Materialize.toast("Your report has been sent.", 2000);
+  //Clears form:
+  $("#comment-input").val("");
+  $("#name-input").val("");
+  $("#phoneNumber-input").val("");
+  $("#email-input").val("");
+});
+
+
+
+
+
 
 
 
