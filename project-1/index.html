@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<title>Report a Beached Turtle</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/styles.css">
@@ -100,14 +100,12 @@
 		<div id="tab3" class="col s12"></div>
 			<!-- Begin code here -->
 
-		<!-- FLOATING BUTTON -->
+		<!-- FLOATING BUTTONS -->
 		<div id="report-button" class="fixed-action-btn hover-to-toggle">
-			<a id="button-link" class="btn-floating waves-effect waves-light pulse btn-large yellow darken-1 modal-trigger" href="#location-modal">
-					<i class="material-icons">add</i>
-			</a>
+			<a id="button-link" class="btn-floating waves-effect waves-light pulse btn-large yellow darken-1 modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Send location" href="#location-modal"><i class="material-icons">add</i></a>
 			<ul>
-				<li><a class="btn-floating green waves-effect waves-light modal-trigger" href="#message-modal"><i class="material-icons">chat</i></a></li>
-				<li><a class="btn-floating blue waves-effect waves-light modal-trigger" href="#phone-modal"><i class="material-icons">phone</i></a></li>
+				<li><a class="btn-floating green waves-effect waves-light modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Send location with comments" href="#message-modal"><i class="material-icons">chat</i></a></li>
+				<li><a class="btn-floating blue waves-effect waves-light modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Call Rescue Center" href="#phone-modal"><i class="material-icons">phone</i></a></li>
 			</ul>
 		</div>
 
@@ -155,6 +153,7 @@
 								<!-- Landmarks Input -->
 								<input id="landmarks-input" name="landmarks" type="text" class="validate" maxlength="150" placeholder="Please note nearby landmarks.">
 								<label for="landmarks">Location</label>
+								<p>Your coordinates will also be sent to the Rescue Center. Pleasue ensure you are near the turtle.</p>
 
 							</div>
 
@@ -188,19 +187,19 @@
 		<div id="location-modal" class="modal bottom-sheet">
 			<div class="modal-content">
 				<h5>Report New Turtle</h5>
-				<p>Would you like to mark your current location for the Rescue Center? Please ensure you are near the turtle.</p>
+				<p>Would you like to send your current location to the Rescue Center? Please ensure you are near the turtle.</p>
 			</div>
 
 			<div class="modal-footer">
 				<a href="#!" class="modal-action waves-effect waves-black btn-flat modal-close">Cancel</a>
-				<button id="mark" class="btn green yellow-text waves-effect waves-light modal-close">Mark</button>
+				<button id="mark" class="btn green yellow-text waves-effect waves-light modal-close">Send</button>
 			</div>
 		</div>
 
 	</div>
 
 	<!-- FOOTER -->
-	<footer class="page-footer green lighten-3 brown-text text-darken-4">
+	<footer class="page-footer green lighten-2 brown-text text-darken-4">
 		<div class="container">
 			<div class="col sm12 center-align">
 				© 2017 Turtle Power
