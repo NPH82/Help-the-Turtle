@@ -7,57 +7,65 @@
 window.mapsLoaded = false;
 
 function initMap() {
-  window.mapsLoaded = true;
+    window.mapsLoaded = true;
 }
+
+//Geolocation
+var map, infoWindow;
+var marker;
 
 function notInitMap(id) {
 
-  map = new google.maps.Map(document.getElementById('map'));
+    map = new google.maps.Map(document.getElementById('map'));
 
-  infoWindow = new google.maps.InfoWindow;
+    infoWindow = new google.maps.InfoWindow;
 
-  //using HTML5 geolocation
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-        var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-        };
+    //using HTML5 geolocation
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                var turtleStatus = "reported";
+                marker = new google.maps.Marker({
+                    postion: pos,
+                    map: map,
+                    animation: google.maps.Animation.DROP
+                });
+                marker.setPosition(pos);
+                map.setCenter(pos);
+                map.setZoom(16);
 
-        var turtleStatus = "reported";
-        infoWindow.setPosition(pos);
-        infoWindow.setContent('<h6>Turtle</h6>');
-        infoWindow.open(map);
-        map.setCenter(pos);
-        map.setZoom(16);
+                // Getting location and creating JSON on Firebase
+                firebase.database().ref().push({
+                    locationLat: position.coords.latitude,
+                    locationLong: position.coords.longitude,
+                    comment: $("#comment-input").val(),
+                    volunteer: $("#name-input").val(),
+                    phonenumber: $("#phoneNumber-input").val(),
+                    email: $("#email-input").val(),
+                    status: turtleStatus,
+                    dateAdded: firebase.database.ServerValue.TIMESTAMP
+                });
+                resetForm();
 
-        // Getting location and creating JSON on Firebase
-        firebase.database().ref().push({
-          locationLat: position.coords.latitude,
-          locationLong: position.coords.longitude,
-          comment: $("#comment-input").val(null),
-          name: $("#name-input").val(null),
-          phonenumber: $("#phoneNumber-input").val(null),
-          email: $("#email-input").val(null),
-          status: turtleStatus,
-          dateAdded: firebase.database.ServerValue.TIMESTAMP
-        });
-    },
-    function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    })
-  } else {
-      //Browser doesn't suppport Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-  }
+            },
+            function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+            })
+    } else {
+        //Browser doesn't suppport Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-      'Error: We can\'t get your location.  Please refresh and accept.' :
-      'Error: Your browser doesn\'t support geolocation.');
-  infoWindow.open(map);
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+        'Error: We can\'t get your location.  Please refresh and accept.' :
+        'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(map);
 }
 
 //Firebase Initialization
@@ -73,52 +81,51 @@ firebase.initializeApp(config);
 
 //Authenticating Firebase Anonymously
 firebase.auth().signInAnonymously().catch(function(error) {
-  //handling errors
-  var errorCode = error.code;
-  var errorMessage = error.message;
+    //handling errors
+    var errorCode = error.code;
+    var errorMessage = error.message;
 
-  if (errorCode === 'auth/operation-not-allowed') {
-      alert('You must enable Anonymous auth in Firebase Console');
-  } else {
-      console.error(error);
-  }
+    if (errorCode === 'auth/operation-not-allowed') {
+        alert('You must enable Anonymous auth in Firebase Console');
+    } else {
+        console.error(error);
+    }
 });
 
 //Creates User Account
 firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-      var isAnonymous = user.isAnonymous;
-      var uid = user.id;
-      console.log("Locating user");
-  } else {
-      console.log("User signed out");
-  }
+    if (user) {
+        var isAnonymous = user.isAnonymous;
+        var uid = user.id;
+        console.log("Locating user");
+    } else {
+        console.log("User signed out");
+    }
 })
-
-//Geolocation
-var map, infoWindow;
-var marker;
 
 //Send location
 $("#send").on("click", function(event) {
-  event.preventDefault();
-  notInitMap();
-  //Alerts user:
-  Materialize.toast("Your location has been sent.", 2000);
+    event.preventDefault();
+    notInitMap();
+    //Alerts user:
+    Materialize.toast("Your location has been sent.", 2000);
 });
 
 //Submit form and send location
 $("#submit").on("click", function(event) {
-  event.preventDefault();
-  notInitMap();
-  //Alerts user:
-  Materialize.toast("Your report has been sent.", 2000);
-  //Clears form:
-  $("#comment-input").val("");
-  $("#name-input").val("");
-  $("#phoneNumber-input").val("");
-  $("#email-input").val("");
+    event.preventDefault();
+    notInitMap();
+    //Alerts user:
+    Materialize.toast("Your report has been sent.", 2000);
 });
+
+
+function resetForm() {
+    $("#comment-input").val("");
+    $("#name-input").val("");
+    $("#phoneNumber-input").val("");
+    $("#email-input").val("");
+}
 
 
 
