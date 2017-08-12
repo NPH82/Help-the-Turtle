@@ -150,7 +150,7 @@ $("#submit").on("click", function(event) {
 });
 
 //Send location to database
-$("#mark").on("click", function(event) {
+$("#send").on("click", function(event) {
  event.preventDefault();
   firebase.database().ref().on("child_added", function(childSnapshot){
     $("#latitude-input") = childSnapshot.val().locationLat;
