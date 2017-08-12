@@ -1,3 +1,8 @@
+//parallax page
+ $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+
  //Sidebar Menu
   $(".button-collapse").sideNav();
 
