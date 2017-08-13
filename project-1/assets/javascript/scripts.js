@@ -135,9 +135,16 @@ function resetForm() {
 
 function turtleDiv() {
   var comment = $("#comment-input").val();
-  $("#number").append("Turtle " + count);
+  $("#fullCard").clone().appendTo("main");
+  $("#heading").attr('class', 'grey-text no-card hide');
+  $("#turtle").attr('class', 'card hoverable show');
+  $("#number").empty();
+  $("#number").append("Turtle " + count + "<i class='material-icons right'>more_vert</i>");
+  $("#reported").empty();
   $("#reported").append("<p>" + "Reported " + moment().format('MMMM Do YYYY, h:mm a') + "</p>");
-  $("#comments").append("<p>" + comment + "</p>");
+  $("#comment").empty();
+  $("#comment").append("<p>" + comment + "</p>");
+  $("#turtle").append("<div id='turtle' class='card hoverable hide")
 }
 
 
