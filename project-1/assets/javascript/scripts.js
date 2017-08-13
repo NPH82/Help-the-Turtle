@@ -153,9 +153,6 @@ function turtleDiv() {
 
 $(document).ready(function() {
 
-  //Tab swipe
-  // $('ul.tabs').tabs({swipeable: true});
-
   //Parallax page
   $('.parallax').parallax();
 
@@ -183,7 +180,6 @@ $(document).ready(function() {
     var email = $('#email-input')
     var phone = $('#phoneNumber-input')
     var landmarks = $('#comment-input')
-
       $.ajax({
         method: 'POST',
         url: '//formspree.io/umassturtlepower@gmail.com',
@@ -192,7 +188,6 @@ $(document).ready(function() {
       });
       e.preventDefault();
       $(this).get(0).reset();
-
   });
 
 
