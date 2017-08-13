@@ -130,7 +130,6 @@ function resetForm() {
     $("#name-input").val("");
     $("#phoneNumber-input").val("");
     $("#email-input").val("");
-
 }
 
 function turtleDiv() {
@@ -141,6 +140,9 @@ function turtleDiv() {
   $("#comments").append("<p>" + comment + "</p>");
   console.log("so is this");
 }
+
+
+
 
 //////////////////////////////////////////////////////////
 //FRONT END
@@ -168,6 +170,24 @@ $(document).ready(function() {
   //Trigger modal
   $(".modal").modal();
 
-  
+  //formspree ajax
+
+  $('#reportNewTurtle-form').submit(function(e) {
+      var name = $('#name-input')
+      var email = $('#email-input')
+      var phone = $('#phoneNumber-input')
+      var landmarks = $('#comment-input')
+
+        $.ajax({
+          method: 'POST',
+          url: '//formspree.io/umassturtlepower@gmail.com',
+          data: $('#report-form').serialize(),
+          datatype: 'json'
+        });
+        e.preventDefault();
+        $(this).get(0).reset();
+      
+    });
+
 
 });
