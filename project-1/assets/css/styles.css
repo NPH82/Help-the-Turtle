@@ -44,8 +44,12 @@ main {
   padding-top: 20px;
 }
 
-#main-row {
+main .tab {
   color: #4e342e;
+}
+
+.no-card {
+  margin-top: 150px;
 }
 
 #map {
