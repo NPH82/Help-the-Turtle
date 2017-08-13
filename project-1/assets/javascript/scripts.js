@@ -46,7 +46,7 @@ function notInitMap(id) {
                     phonenumber: $("#phoneNumber-input").val(),
                     email: $("#email-input").val(),
                     status: turtleStatus,
-                    dateAdded: firebase.database.ServerValue.TIMESTAMP
+                    dateAdded: moment().format('MMMM Do YYYY, h:mm a')
                 });
                 resetForm();
 
@@ -112,11 +112,16 @@ $("#send").on("click", function(event) {
 });
 
 //Submit form and send location
+var count = 0
 $("#submit").on("click", function(event) {
     event.preventDefault();
+    count++;
     notInitMap();
+    turtleDiv();
     //Alerts user:
     Materialize.toast("Your report has been sent.", 2000);
+    //Turtle Div creation
+  
 });
 
 
@@ -127,27 +132,14 @@ function resetForm() {
     $("#email-input").val("");
 }
 
-//formspree ajax
-$(document).ready(function() {
-  $('#reportNewTurtle-form').submit(function(e) {
-      var name = $('#name-input')
-      var email = $('#email-input')
-      var phone = $('#phoneNumber-input')
-      var landmarks = $('#landmarks-input')
-
-        $.ajax({
-          method: 'POST',
-          url: '//formspree.io/umassturtlepower@gmail.com',
-          data: $('#report-form').serialize(),
-          datatype: 'json'
-        });
-        e.preventDefault();
-        $(this).get(0).reset();
-      
-    });
-});
-
-
+function turtleDiv() {
+  var comment = $("#comment-input").val();
+  $("#number").append(count);
+  $("#reported").append("<p>" + "Reported " + moment().format('MMMM Do YYYY, h:mm a') + "</p>");
+  console.log("this is running");
+  $("#comments").append("<p>" + comment + "</p>");
+  console.log("so is this");
+}
 
 
 
@@ -177,5 +169,25 @@ $(document).ready(function() {
 
   //Trigger modal
   $(".modal").modal();
+
+  //formspree ajax
+
+  $('#reportNewTurtle-form').submit(function(e) {
+      var name = $('#name-input')
+      var email = $('#email-input')
+      var phone = $('#phoneNumber-input')
+      var landmarks = $('#comment-input')
+
+        $.ajax({
+          method: 'POST',
+          url: '//formspree.io/umassturtlepower@gmail.com',
+          data: $('#report-form').serialize(),
+          datatype: 'json'
+        });
+        e.preventDefault();
+        $(this).get(0).reset();
+      
+    });
+
 
 });
