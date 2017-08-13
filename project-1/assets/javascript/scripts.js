@@ -123,7 +123,6 @@ $("#submit").on("click", function(event) {
     turtleDiv();
     //Alerts user:
     Materialize.toast("Your report has been sent.", 2000);
-  
 });
 
 
@@ -149,27 +148,27 @@ function turtleDiv() {
 //////////////////////////////////////////////////////////
 
 $(document).ready(function() {
+
   //Parallax page
   $('.parallax').parallax();
 
-  //Sidebar Menu
+  //Sidebar menu
   $(".button-collapse").sideNav({
-      menuWidth: 200, // Default is 300
-      closeOnClick: true,
+    menuWidth: 200,
+    closeOnClick: true,
   });
 
-  //Floating button
+  //Floating action button
   $("#report-button").on("mouseover", function() {
-      $("#report-button").children("a").removeClass("pulse");
-      $("#report-button").children("a").children("i").text("place");
+    $("#report-button").children("a").removeClass("pulse");
+    $("#report-button").children("a").children("i").text("place");
   });
   $("#report-button").on("mouseout", function() {
-      $("#report-button").children("a").children("i").text("add");
+    $("#report-button").children("a").children("i").text("add");
   });
 
   //Trigger modal
   $(".modal").modal();
-
 
 //////////////////////////////////////////////////////////
 //BACK END
@@ -179,21 +178,19 @@ $(document).ready(function() {
   //formspree ajax
 
   $('#reportNewTurtle-form').submit(function(e) {
-      var name = $('#name-input')
-      var email = $('#email-input')
-      var phone = $('#phoneNumber-input')
-      var landmarks = $('#comment-input')
-
-        $.ajax({
-          method: 'POST',
-          url: '//formspree.io/umassturtlepower@gmail.com',
-          data: $('#report-form').serialize(),
-          datatype: 'json'
-        });
-        e.preventDefault();
-        $(this).get(0).reset();
-      
-    });
+    var name = $('#name-input')
+    var email = $('#email-input')
+    var phone = $('#phoneNumber-input')
+    var landmarks = $('#comment-input')
+      $.ajax({
+        method: 'POST',
+        url: '//formspree.io/umassturtlepower@gmail.com',
+        data: $('#report-form').serialize(),
+        datatype: 'json'
+      });
+      e.preventDefault();
+      $(this).get(0).reset();
+  });
 
 
 });
