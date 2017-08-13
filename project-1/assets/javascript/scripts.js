@@ -104,9 +104,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 })
 
 //Send location
+var count = 0;
 $("#send").on("click", function(event) {
     event.preventDefault();
+    count++;
     notInitMap();
+    turtleDiv();
     //Alerts user:
     Materialize.toast("Your location has been sent.", 2000);
 });
@@ -134,7 +137,7 @@ function resetForm() {
 
 function turtleDiv() {
   var comment = $("#comment-input").val();
-  $("#number").append(count);
+  $("#number").append("Turtle " + count);
   $("#reported").append("<p>" + "Reported " + moment().format('MMMM Do YYYY, h:mm a') + "</p>");
   console.log("this is running");
   $("#comments").append("<p>" + comment + "</p>");
