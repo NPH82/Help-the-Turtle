@@ -59,8 +59,8 @@ main {
 }
 
 #steps div {
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-top: 0;
+  margin-bottom: 40px;
   padding: 0 80px;
 }
 
