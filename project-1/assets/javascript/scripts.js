@@ -127,7 +127,25 @@ function resetForm() {
     $("#email-input").val("");
 }
 
+//formspree ajax
+$(document).ready(function() {
+  $('#reportNewTurtle-form').submit(function(e) {
+      var name = $('#name-input')
+      var email = $('#email-input')
+      var phone = $('#phoneNumber-input')
+      var landmarks = $('#landmarks-input')
 
+        $.ajax({
+          method: 'POST',
+          url: '//formspree.io/umassturtlepower@gmail.com',
+          data: $('#report-form').serialize(),
+          datatype: 'json'
+        });
+        e.preventDefault();
+        $(this).get(0).reset();
+      
+    });
+});
 
 
 
