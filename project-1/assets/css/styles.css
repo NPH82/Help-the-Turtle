@@ -44,22 +44,29 @@ main {
   padding-top: 20px;
 }
 
-main .tab {
-  color: #4e342e;
-}
-
 .no-card {
   margin-top: 150px;
 }
 
 #map {
   margin-bottom: 20px;
+  height: 200px;
+	width: 100%;
+}
+
+#steps-header {
+  margin-top: 60px;
 }
 
 #steps div {
   margin-top: 30px;
   margin-bottom: 20px;
   padding: 0 80px;
+}
+
+#userLocation {
+	height:50px;
+	width: 50px;
 }
 
 /*MODALS*/
@@ -92,17 +99,6 @@ body {
 main {
   flex: 1 0 auto;
 }
-
-#map {
-	height: 200px;
-	width: 100%;
-}
-
-#userLocation {
-	height:50px;
-	width: 50px;
-}
-
 
 /*RESPONSIVE DESIGN*/
 
