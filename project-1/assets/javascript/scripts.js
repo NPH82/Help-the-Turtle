@@ -46,7 +46,7 @@ function notInitMap(id) {
                     phonenumber: $("#phoneNumber-input").val(),
                     email: $("#email-input").val(),
                     status: turtleStatus,
-                    dateAdded: firebase.database.ServerValue.TIMESTAMP
+                    dateAdded: moment().format('MMMM Do YYYY, h:mm a')
                 });
                 resetForm();
 
@@ -112,11 +112,16 @@ $("#send").on("click", function(event) {
 });
 
 //Submit form and send location
+var count = 0
 $("#submit").on("click", function(event) {
     event.preventDefault();
+    count++;
     notInitMap();
+    turtleDiv();
     //Alerts user:
     Materialize.toast("Your report has been sent.", 2000);
+    //Turtle Div creation
+  
 });
 
 
@@ -125,14 +130,17 @@ function resetForm() {
     $("#name-input").val("");
     $("#phoneNumber-input").val("");
     $("#email-input").val("");
+
 }
 
-
-
-
-
-
-
+function turtleDiv() {
+  var comment = $("#comment-input").val();
+  $("#number").append(count);
+  $("#reported").append("<p>" + "Reported " + moment().format('MMMM Do YYYY, h:mm a') + "</p>");
+  console.log("this is running");
+  $("#comments").append("<p>" + comment + "</p>");
+  console.log("so is this");
+}
 
 //////////////////////////////////////////////////////////
 //FRONT END
@@ -159,5 +167,7 @@ $(document).ready(function() {
 
   //Trigger modal
   $(".modal").modal();
+
+  
 
 });
