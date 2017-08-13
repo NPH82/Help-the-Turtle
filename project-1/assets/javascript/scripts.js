@@ -115,7 +115,7 @@ $("#send").on("click", function(event) {
 });
 
 //Submit form and send location
-var count = 0
+var count = 0;
 $("#submit").on("click", function(event) {
     event.preventDefault();
     count++;
@@ -123,7 +123,6 @@ $("#submit").on("click", function(event) {
     turtleDiv();
     //Alerts user:
     Materialize.toast("Your report has been sent.", 2000);
-    //Turtle Div creation
   
 });
 
@@ -139,9 +138,7 @@ function turtleDiv() {
   var comment = $("#comment-input").val();
   $("#number").append("Turtle " + count);
   $("#reported").append("<p>" + "Reported " + moment().format('MMMM Do YYYY, h:mm a') + "</p>");
-  console.log("this is running");
   $("#comments").append("<p>" + comment + "</p>");
-  console.log("so is this");
 }
 
 
@@ -172,6 +169,12 @@ $(document).ready(function() {
 
   //Trigger modal
   $(".modal").modal();
+
+
+//////////////////////////////////////////////////////////
+//BACK END
+//////////////////////////////////////////////////////////
+
 
   //formspree ajax
 
