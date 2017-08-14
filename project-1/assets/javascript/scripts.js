@@ -106,26 +106,24 @@ firebase.auth().onAuthStateChanged(function(user) {
 //Send location
 var count = 0;
 $("#send").on("click", function(event) {
-    event.preventDefault();
-    count++;
-    notInitMap();
-    turtleDiv();
-    //Alerts user:
-    Materialize.toast("Your location has been sent.", 2000);
+  event.preventDefault();
+  count++;
+  notInitMap();
+  turtleDiv();
+  Materialize.toast("Your location has been sent.", 2000);
 });
 
 //Submit form and send location
 var count = 0;
 $("#submit").on("click", function(event) {
-    event.preventDefault();
-    count++;
-    notInitMap();
-    turtleDiv();
-    //Alerts user:
-    Materialize.toast("Your report has been sent.", 2000);
+  event.preventDefault();
+  count++;
+  notInitMap();
+  turtleDiv();
+  Materialize.toast("Your report has been sent.", 2000);
 });
 
-
+//Reset form
 function resetForm() {
     $("#comment-input").val("");
     $("#name-input").val("");
@@ -133,10 +131,11 @@ function resetForm() {
     $("#email-input").val("");
 }
 
+//Create turtle card in document
 function turtleDiv() {
   var comment = $("#comment-input").val();
-  $("#fullCard").clone().appendTo("main");
-  $("#heading").attr('class', 'grey-text no-card hide');
+  $("#fullCard").clone().prependTo("#tab1");
+  $("#tab1-heading").attr('class', 'no-card hide');
   $("#turtle").attr('class', 'card hoverable show');
   $("#number").empty();
   $("#number").append("Turtle " + count + "<i class='material-icons right'>more_vert</i>");
@@ -144,24 +143,34 @@ function turtleDiv() {
   $("#reported").append("<p>" + "Reported " + moment().format('MMMM Do YYYY, h:mm a') + "</p>");
   $("#comment").empty();
   $("#comment").append("<p>" + comment + "</p>");
-  $("#turtle").append("<div id='turtle' class='card hoverable hide")
+  $("#turtle").append("<div id='turtle' class='card hoverable hide");
+
 }
+
+//Moving turtle card to dispatched
+$("#tab1").on("click", "#next-stage-btn", function(){
+  $("#tab2-heading").attr('class', 'no-card hide');
+  $("#fullCard").prependTo("#tab2");
+  Materialize.toast("This turtle has been moved to DISPATCHED.", 2000);
+});
 
 
 
 
 //////////////////////////////////////////////////////////
-//FRONT END
+//DOCUMENT.READY
 //////////////////////////////////////////////////////////
 
 $(document).ready(function() {
+
+  //FRONT END
 
   //Parallax page
   $('.parallax').parallax();
 
   //Sidebar menu
   $(".button-collapse").sideNav({
-    menuWidth: 200,
+    menuWidth: 250,
     closeOnClick: true,
   });
 
@@ -177,13 +186,9 @@ $(document).ready(function() {
   //Trigger modal
   $(".modal").modal();
 
-//////////////////////////////////////////////////////////
-//BACK END
-//////////////////////////////////////////////////////////
+  //BACK END
 
-
-  //formspree ajax
-
+  //Formspree ajax
   $('#reportNewTurtle-form').submit(function(e) {
     var name = $('#name-input')
     var email = $('#email-input')
