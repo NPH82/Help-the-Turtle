@@ -110,9 +110,7 @@ $("#send").on("click", function(event) {
   count++;
   notInitMap();
   turtleDiv();
-  //Alerts user:
   Materialize.toast("Your location has been sent.", 2000);
-  //Turtle Div creation
 });
 
 //Submit form and send location
@@ -122,7 +120,6 @@ $("#submit").on("click", function(event) {
   count++;
   notInitMap();
   turtleDiv();
-  //Alerts user:
   Materialize.toast("Your report has been sent.", 2000);
 });
 
@@ -138,7 +135,7 @@ function resetForm() {
 function turtleDiv() {
   var comment = $("#comment-input").val();
   $("#fullCard").clone().prependTo("#tab1");
-  $("#heading").attr('class', 'no-card hide');
+  $("#tab1-heading").attr('class', 'no-card hide');
   $("#turtle").attr('class', 'card hoverable show');
   $("#number").empty();
   $("#number").append("Turtle " + count + "<i class='material-icons right'>more_vert</i>");
@@ -149,6 +146,13 @@ function turtleDiv() {
   $("#turtle").append("<div id='turtle' class='card hoverable hide");
 
 }
+
+//Moving turtle card to dispatched
+$("#tab1").on("click", "#next-stage-btn", function(){
+  $("#tab2-heading").attr('class', 'no-card hide');
+  $("#fullCard").prependTo("#tab2");
+  Materialize.toast("This turtle has been moved to DISPATCHED.", 2000);
+});
 
 
 
