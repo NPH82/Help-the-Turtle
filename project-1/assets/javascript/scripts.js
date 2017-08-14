@@ -170,7 +170,7 @@ $(document).ready(function() {
 
   //Sidebar menu
   $(".button-collapse").sideNav({
-    menuWidth: 200,
+    menuWidth: 250,
     closeOnClick: true,
   });
 
