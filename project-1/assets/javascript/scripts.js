@@ -106,23 +106,24 @@ firebase.auth().onAuthStateChanged(function(user) {
 //Send location
 var count = 0;
 $("#send").on("click", function(event) {
-    event.preventDefault();
-    count++;
-    notInitMap();
-    turtleDiv();
-    //Alerts user:
-    Materialize.toast("Your location has been sent.", 2000);
+  event.preventDefault();
+  count++;
+  notInitMap();
+  turtleDiv();
+  //Alerts user:
+  Materialize.toast("Your location has been sent.", 2000);
+  //Turtle Div creation
 });
 
 //Submit form and send location
 var count = 0;
 $("#submit").on("click", function(event) {
-    event.preventDefault();
-    count++;
-    notInitMap();
-    turtleDiv();
-    //Alerts user:
-    Materialize.toast("Your report has been sent.", 2000);
+  event.preventDefault();
+  count++;
+  notInitMap();
+  turtleDiv();
+  //Alerts user:
+  Materialize.toast("Your report has been sent.", 2000);
 });
 
 //Reset form
