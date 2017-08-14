@@ -125,7 +125,7 @@ $("#submit").on("click", function(event) {
     Materialize.toast("Your report has been sent.", 2000);
 });
 
-
+//Reset form
 function resetForm() {
     $("#comment-input").val("");
     $("#name-input").val("");
@@ -133,10 +133,11 @@ function resetForm() {
     $("#email-input").val("");
 }
 
+//Create turtle card in document
 function turtleDiv() {
   var comment = $("#comment-input").val();
-  $("#fullCard").clone().appendTo("main");
-  $("#heading").attr('class', 'grey-text no-card hide');
+  $("#fullCard").clone().appendTo("#tab1");
+  $("#heading").attr('class', 'no-card hide');
   $("#turtle").attr('class', 'card hoverable show');
   $("#number").empty();
   $("#number").append("Turtle " + count + "<i class='material-icons right'>more_vert</i>");
@@ -145,16 +146,20 @@ function turtleDiv() {
   $("#comment").empty();
   $("#comment").append("<p>" + comment + "</p>");
   $("#turtle").append("<div id='turtle' class='card hoverable hide")
+  $("#tab1").removeClass("center-align");
+
 }
 
 
 
 
 //////////////////////////////////////////////////////////
-//FRONT END
+//DOCUMENT.READY
 //////////////////////////////////////////////////////////
 
 $(document).ready(function() {
+
+  //FRONT END
 
   //Parallax page
   $('.parallax').parallax();
@@ -177,12 +182,9 @@ $(document).ready(function() {
   //Trigger modal
   $(".modal").modal();
 
-//////////////////////////////////////////////////////////
-//BACK END
-//////////////////////////////////////////////////////////
+  //BACK END
 
-
-  //formspree ajax
+  //Formspree ajax
 
   $('#reportNewTurtle-form').submit(function(e) {
     var name = $('#name-input')
