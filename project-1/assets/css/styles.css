@@ -54,6 +54,14 @@ main {
 	width: 100%;
 }
 
+.card-button {
+  font-weight: 600;
+}
+
+.card-button:hover {
+  opacity: 0.8;
+}
+
 #steps-header {
   margin-top: 60px;
 }

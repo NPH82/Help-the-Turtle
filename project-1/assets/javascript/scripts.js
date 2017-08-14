@@ -185,7 +185,6 @@ $(document).ready(function() {
   //BACK END
 
   //Formspree ajax
-
   $('#reportNewTurtle-form').submit(function(e) {
     var name = $('#name-input')
     var email = $('#email-input')
