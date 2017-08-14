@@ -39,66 +39,66 @@
 		<div class="nav-content">
 			<ul id="tabs" class="tabs tabs-transparent">
 				<li class="tab"><a class="active" href="#tab1">Reported</a></li>
-				<li class="tab"><a href="#tab2">Rescuing</a></li>
-				<li class="tab"><a href="#tab3">Rescued</a></li>
+				<li class="tab"><a href="#tab2">Dispatched</a></li>
+				<li class="tab"><a href="#tab3">Saved</a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<!-- MAIN SECTOIN -->
-	<main>
+	<main class="row">
 
 		<!-- REPORTED TAB -->
-		<div id="tab1" class="col s12">
+		<div id="tab1" class="center-align">
 
-			<!-- MAIN ROW -->
-			<div class="row" id="main-row">
-				<div class="container">
-					<div class="col s12 m6">
+			<h5 id="heading" class="grey-text no-card show">No Turtles Reported</h5>
 
-					<!--TURTLE CARDS-->
-						<div class="card hoverable">
-					    <div class="card-image">
-					     <div id="map" class="col s12"></div>
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator green-text">Turtle 12<i class="material-icons right">more_vert</i></span>
-					      <p>Reported Monday, Aug. 10 at 2:30 PM</p>
-					    </div>
-					    <div class="card-reveal">
-					      <span class="card-title green-text">Comments<i class="material-icons right">close</i></span>
-					      <p>Here is some more information about this reported turtle that is revealed once clicked on.</p>
-					    </div>
-					  </div>
-					</div>
 
-					<div class="col s12 m6">
-						<div class="card hoverable">
-					    <div class="card-image">
-					     <div id="map" class='col s12'></div>
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator green-text">Turtle 13<i class="material-icons right">more_vert</i></span>
-					      <p>Reported Monday, Aug. 10 at 3:30 PM</p>
-					    </div>
-					    <div class="card-reveal">
-					      <span class="card-title green-text">Comments<i class="material-icons right">close</i></span>
-					      <p>Here is some more information about this reported turtle that is revealed once clicked on.</p>
-					    </div>
-					  </div>
-					</div>
 
-				</div>
+			<!--TURTLE CARD-->
+			<div id="fullCard" class="col s12">
+				<div id="turtle" class="card hoverable hide">
+			   <div class="card-image">
+			     <div id="map" class="col s12"></div>
+			    </div>
+			    <div class="card-content">
+			      <span id="number" class="card-title activator green-text"><i class="material-icons right">more_vert</i></span>
+			      <p id="reported"></p>
+			    </div>
+			    <div class="card-reveal">
+			      <span class="card-title green-text">Comment<i class="material-icons right">close</i></span>
+			      <p id="comment"></p>
+			    </div>
+			  </div>
 			</div>
+			</div>
+
+			<!-- New Card (Work in Progress)-->
+			<!-- <div class="card col s12 m6">
+				<div class="card-image waves-effect waves-block waves-light">
+					<img class="activator" src="assets/images/swimming-turtle.jpg">
+				</div>
+				<div class="card-content">
+					<span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+					<p><a href="#">This is a link</a></p>
+				</div>
+				<div class="card-reveal">
+					<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+					<p>Here is some more information about this product that is only revealed once clicked on.</p>
+				</div>
+			</div> -->
+
 		</div>
 
-		<!-- RESCUING TAB -->
-		<div id="tab2" class="col s12"></div>
-			<!-- Begin code here -->
+		<!-- DISPATCHED TAB -->
+		<div id="tab2" class="center-align">
+			<h5 class="grey-text no-card">No Rescuers Dispatched</h5>
+		</div>
 
-		<!-- RESCUED TAB -->
-		<div id="tab3" class="col s12"></div>
-			<!-- Begin code here -->
+		<!-- SAVED TAB -->
+		<div id="tab3" class="center-align">
+			<h5 class="grey-text no-card">No Turtles Saved</h5>
+		</div>
 
 		<!-- FLOATING BUTTONS -->
 		<div id="report-button" class="fixed-action-btn hover-to-toggle">
@@ -121,7 +121,7 @@
 				<!-- FORM -->
 				<div class="row">
 					<div class="col s12">
-						<form action="https://formspree.io/umassturtlepower@gmail.com" method="post">
+						<form id="reportNewTurtle-form">
 
 							<!-- Hidden Input Fields -->
 							<input type="hidden" name="_subject" value="New Turtle Report">
