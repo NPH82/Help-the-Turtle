@@ -137,6 +137,7 @@ function turtleDiv() {
   $("#fullCard").clone().prependTo("#tab1");
   $("#tab1-heading").attr('class', 'no-card hide');
   $("#turtle").attr('class', 'card hoverable show');
+  $(".card-image").append("<div id='map' class='col 12'></div>")
   $("#number").empty();
   $("#number").append("Turtle " + count + "<i class='material-icons right'>more_vert</i>");
   $("#reported").empty();
