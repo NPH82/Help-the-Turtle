@@ -137,7 +137,7 @@ function resetForm() {
 //Create turtle card in document
 function turtleDiv() {
   var comment = $("#comment-input").val();
-  $("#fullCard").clone().appendTo("#tab1");
+  $("#fullCard").clone().prependTo("#tab1");
   $("#heading").attr('class', 'no-card hide');
   $("#turtle").attr('class', 'card hoverable show');
   $("#number").empty();
@@ -146,8 +146,7 @@ function turtleDiv() {
   $("#reported").append("<p>" + "Reported " + moment().format('MMMM Do YYYY, h:mm a') + "</p>");
   $("#comment").empty();
   $("#comment").append("<p>" + comment + "</p>");
-  $("#turtle").append("<div id='turtle' class='card hoverable hide")
-  $("#tab1").removeClass("center-align");
+  $("#turtle").append("<div id='turtle' class='card hoverable hide");
 
 }
 
