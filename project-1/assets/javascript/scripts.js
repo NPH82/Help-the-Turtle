@@ -37,17 +37,29 @@ function notInitMap(id) {
                 map.setCenter(pos);
                 map.setZoom(16);
 
-                // Getting location and creating JSON on Firebase
-                firebase.database().ref().push({
-                    locationLat: position.coords.latitude,
-                    locationLong: position.coords.longitude,
-                    comment: $("#comment-input").val(),
-                    volunteer: $("#name-input").val(),
-                    phonenumber: $("#phoneNumber-input").val(),
-                    email: $("#email-input").val(),
-                    status: turtleStatus,
-                    dateAdded: moment().format('MMMM Do YYYY, h:mm a')
-                });
+
+                // REWORKED THIS CALL Getting location and creating JSON on Firebase
+                var database = firebase.database();
+
+                var comment = $("#comment-input").val(),
+                    name = $("#name-input").val(),
+                    phone = $("#phoneNumber-input").val(),
+                    email = $("#email-input").val(),
+                    turtleCard = database.ref('turtleCard'),
+                    time = moment().format('MMMM Do YYYY, h:mm a'),
+                    locationLat = position.coords.latitude,
+                    locationLong = position.coords.longitude,
+                    data = {
+                        Lat: locationLat,
+                        Long: locationLong,
+                        name: name,
+                        phone: phone,
+                        email: email,
+                        comment: comment,
+                        time: time
+                    };
+
+                database.ref('turtleCard').push(data);
                 resetForm();
 
             },
@@ -103,24 +115,26 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 })
 
+
+
 //Send location
 var count = 0;
 $("#send").on("click", function(event) {
-  event.preventDefault();
-  count++;
-  notInitMap();
-  turtleDiv();
-  Materialize.toast("Your location has been sent.", 2000);
+    event.preventDefault();
+    count++;
+    notInitMap();
+    turtleDiv();
+    Materialize.toast("Your location has been sent.", 2000);
 });
 
 //Submit form and send location
 var count = 0;
 $("#submit").on("click", function(event) {
-  event.preventDefault();
-  count++;
-  notInitMap();
-  turtleDiv();
-  Materialize.toast("Your report has been sent.", 2000);
+    event.preventDefault();
+    count++;
+    notInitMap();
+    turtleDiv();
+    Materialize.toast("Your report has been sent.", 2000);
 });
 
 //Reset form
@@ -133,26 +147,25 @@ function resetForm() {
 
 //Create turtle card in document
 function turtleDiv() {
-  var comment = $("#comment-input").val();
-  $("#fullCard").clone().prependTo("#tab1");
-  $("#tab1-heading").attr('class', 'no-card hide');
-  $("#turtle").attr('class', 'card hoverable show');
-  $(".card-image").append("<div id='map' class='col 12'></div>")
-  $("#number").empty();
-  $("#number").append("Turtle " + count + "<i class='material-icons right'>more_vert</i>");
-  $("#reported").empty();
-  $("#reported").append("<p>" + "Reported " + moment().format('MMMM Do YYYY, h:mm a') + "</p>");
-  $("#comment").empty();
-  $("#comment").append("<p>" + comment + "</p>");
-  $("#turtle").append("<div id='turtle' class='card hoverable hide");
+    var comment = $("#comment-input").val();
+    $("#fullCard").clone().appendTo("#tab1");
+    $("#tab1-heading").attr('class', 'no-card hide');
+    $("#turtle").attr('class', 'card hoverable show');
+    $("#number").empty();
+    $("#number").append("Turtle " + count + "<i class='material-icons right'>more_vert</i>");
+    $("#reported").empty();
+    $("#reported").append("<p>" + "Reported " + moment().format('MMMM Do YYYY, h:mm a') + "</p>");
+    $("#comment").empty();
+    $("#comment").append(comment);
+    $("#turtle").append("<div id='turtle' class='card hoverable hide");
 
 }
 
 //Moving turtle card to dispatched
-$("#tab1").on("click", "#next-stage-btn", function(){
-  $("#tab2-heading").attr('class', 'no-card hide');
-  $("#fullCard").prependTo("#tab2");
-  Materialize.toast("This turtle has been moved to DISPATCHED.", 2000);
+$("#tab1").on("click", "#next-stage-btn", function() {
+    $("#tab2-heading").attr('class', 'no-card hide');
+    $("#fullCard").prependTo("#tab2");
+    Materialize.toast("This turtle has been moved to DISPATCHED.", 2000);
 });
 
 
@@ -164,46 +177,46 @@ $("#tab1").on("click", "#next-stage-btn", function(){
 
 $(document).ready(function() {
 
-  //FRONT END
+    //FRONT END
 
-  //Parallax page
-  $('.parallax').parallax();
+    //Parallax page
+    $('.parallax').parallax();
 
-  //Sidebar menu
-  $(".button-collapse").sideNav({
-    menuWidth: 250,
-    closeOnClick: true,
-  });
+    //Sidebar menu
+    $(".button-collapse").sideNav({
+        menuWidth: 250,
+        closeOnClick: true,
+    });
 
-  //Floating action button
-  $("#report-button").on("mouseover", function() {
-    $("#report-button").children("a").removeClass("pulse");
-    $("#report-button").children("a").children("i").text("place");
-  });
-  $("#report-button").on("mouseout", function() {
-    $("#report-button").children("a").children("i").text("add");
-  });
+    //Floating action button
+    $("#report-button").on("mouseover", function() {
+        $("#report-button").children("a").removeClass("pulse");
+        $("#report-button").children("a").children("i").text("place");
+    });
+    $("#report-button").on("mouseout", function() {
+        $("#report-button").children("a").children("i").text("add");
+    });
 
-  //Trigger modal
-  $(".modal").modal();
+    //Trigger modal
+    $(".modal").modal();
 
-  //BACK END
+    //BACK END
 
-  //Formspree ajax
-  $('#reportNewTurtle-form').submit(function(e) {
-    var name = $('#name-input')
-    var email = $('#email-input')
-    var phone = $('#phoneNumber-input')
-    var landmarks = $('#comment-input')
-      $.ajax({
-        method: 'POST',
-        url: '//formspree.io/umassturtlepower@gmail.com',
-        data: $('#report-form').serialize(),
-        datatype: 'json'
-      });
-      e.preventDefault();
-      $(this).get(0).reset();
-  });
+    //Formspree ajax
+    $('#reportNewTurtle-form').submit(function(e) {
+        var name = $('#name-input')
+        var email = $('#email-input')
+        var phone = $('#phoneNumber-input')
+        var landmarks = $('#comment-input')
+        $.ajax({
+            method: 'POST',
+            url: '//formspree.io/umassturtlepower@gmail.com',
+            data: $('#report-form').serialize(),
+            datatype: 'json'
+        });
+        e.preventDefault();
+        $(this).get(0).reset();
+    });
 
 
 });
