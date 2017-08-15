@@ -20,7 +20,7 @@ function notInitMap(id) {
 
     infoWindow = new google.maps.InfoWindow;
 
-    //using HTML5 geolocation
+    //Uses HTML5 geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
                 var pos = {
@@ -82,7 +82,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.open(map);
 }
 
-//Firebase Initialization
+//Initializes Firebase
 var config = {
     apiKey: "AIzaSyBZAuUkeBYHmxfplYwuf-7wNHwKUFSLZcU",
     authDomain: "turtle-project.firebaseapp.com",
@@ -93,9 +93,9 @@ var config = {
 };
 firebase.initializeApp(config);
 
-//Authenticating Firebase Anonymously
+//Authenticates Firebase Anonymously
 firebase.auth().signInAnonymously().catch(function(error) {
-    //handling errors
+    //Handling errors
     var errorCode = error.code;
     var errorMessage = error.message;
 
@@ -118,10 +118,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 })
 
 
-//creates a object called turtles
+//Creates turtle object
 var turtles = {};
 
-//sets the value of turtles to the data saved in firebase
+//Sets turtle value to database
 firebase.database().ref().on("value", function(snapshot){
   turtles = snapshot.val();
 });
@@ -130,7 +130,7 @@ firebase.database().ref().on("value", snap => {
   });
 
 
-//Send location
+//Sends location
 count = turtles.Count;
 $("#send").on("click", function(event) {
     event.preventDefault();
@@ -141,8 +141,7 @@ $("#send").on("click", function(event) {
     Materialize.toast("Your location has been sent.", 2000);
 });
 
-//Submit form and send location
-
+//Submits form and sends location
 $("#submit").on("click", function(event) {
     event.preventDefault();
     count = turtles.Count;
@@ -152,7 +151,7 @@ $("#submit").on("click", function(event) {
     Materialize.toast("Your report has been sent.", 2000);
 });
 
-//Reset form
+//Resets form
 function resetForm() {
     $("#comment-input").val("");
     $("#name-input").val("");
@@ -160,7 +159,7 @@ function resetForm() {
     $("#email-input").val("");
 }
 
-//Create turtle card in document
+//Creats turtle card in document
 function turtleDiv() {
     var comment = $("#comment-input").val();
     $("#fullCard").clone().prependTo("#tab1");
@@ -176,18 +175,19 @@ function turtleDiv() {
 
 }
 
-//Moving turtle card to Dispatched
+//Moves turtle card from Reported to Dispatched
 $("#tab1").on("click", "#next-stage-btn", function(){
   $("#tab2-heading").attr('class', 'no-card hide');
   $("#fullCard").appendTo("#tab2");
   Materialize.toast("This turtle has been moved to DISPATCHED.", 2000);
 });
 
-//Moving turtle card to Saved
+//Moves turtle card from Dispatched to Saved
 var savedCount = 0;
 $("#tab2").on("click", "#next-stage-btn", function(){
   $("#tab3-heading").attr('class', 'no-card hide');
-  $("#tab2").find("#fullCard").appendTo("#tab3");
+  $(this).parents("#fullCard").prependTo("#tab3");
+  $("#tab3").find(".sticky-action").html("");
   savedCount++;
   $("#counter").text(savedCount);
   Materialize.toast("This turtle has been moved to SAVED.", 2000);
