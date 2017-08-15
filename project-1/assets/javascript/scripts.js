@@ -148,7 +148,7 @@ function resetForm() {
 //Create turtle card in document
 function turtleDiv() {
     var comment = $("#comment-input").val();
-    $("#fullCard").clone().appendTo("#tab1");
+    $("#fullCard").clone().prependTo("#tab1");
     $("#tab1-heading").attr('class', 'no-card hide');
     $("#turtle").attr('class', 'card hoverable show');
     $("#number").empty();
