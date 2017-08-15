@@ -130,6 +130,7 @@ firebase.database().ref().on("value", snap => {
     turtles = snap.val();
   });
 
+$("#counter").text(turtles.Saved);
 
 //Sends location
 count = turtles.Count;
@@ -187,13 +188,15 @@ $("#tab1").on("click", "#next-stage-btn", function(){
 });
 
 //Moves turtle card from Dispatched to Saved
-var savedCount = 0;
+var savedCount = turtles.Saved;
 $("#tab2").on("click", "#next-stage-btn", function(){
+  savedCount = turtles.Saved;
+  savedCount++;
+  
   $("#tab3-heading").attr('class', 'no-card hide');
   $(this).parents("#fullCard").prependTo("#tab3");
   $("#tab3").find(".sticky-action").html("");
-  savedCount++;
-  $("#counter").text(savedCount);
+
   Materialize.toast("This turtle has been moved to SAVED.", 2000);
 });
 
