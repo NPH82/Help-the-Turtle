@@ -130,7 +130,6 @@ firebase.database().ref().on("value", snap => {
     turtles = snap.val();
   });
 
-$("#counter").text(turtles.Saved);
 
 //Sends location
 count = turtles.Count;
@@ -192,7 +191,7 @@ var savedCount = turtles.Saved;
 $("#tab2").on("click", "#next-stage-btn", function(){
   savedCount = turtles.Saved;
   savedCount++;
-  
+  $("#counter").text(turtles.Saved);
   $("#tab3-heading").attr('class', 'no-card hide');
   $(this).parents("#fullCard").prependTo("#tab3");
   $("#tab3").find(".sticky-action").html("");
