@@ -59,7 +59,8 @@ function notInitMap(id) {
                         time: time
                     };
 
-                database.ref('turtleCard').push(data);
+                database.ref("Turtle " + count).push(data);
+                database.ref("Count").set(count);
                 resetForm();
 
             },
@@ -177,6 +178,14 @@ $("#tab2").on("click", "#next-stage-btn", function(){
   $("#counter").text(savedCount);
   Materialize.toast("This turtle has been moved to SAVED.", 2000);
 });
+
+//creates a object called turtles
+var turtles = {};
+
+//sets the value of turtles to the data saved in firebase
+firebase.database().ref().on("value", snap => {
+    turtles = snap.val();
+  });
 
 
 //////////////////////////////////////////////////////////
