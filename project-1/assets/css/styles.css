@@ -72,6 +72,16 @@ main {
   padding: 0 80px;
 }
 
+#helpSteps-header {
+  margin-top: 60px;
+}
+
+#helpSteps div {
+  margin-top: 0;
+  margin-bottom: 40px;
+  padding: 0 80px;
+}
+
 #userLocation {
   height: 50px;
   width: 50px;
@@ -114,6 +124,9 @@ main {
 
 @media screen and (min-width: 601px) {
   #steps div {
+    padding: 20px;
+  }
+  #helpSteps div {
     padding: 20px;
   }
 }
