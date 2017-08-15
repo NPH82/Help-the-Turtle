@@ -287,5 +287,12 @@ $(document).ready(function() {
     $(this).get(0).reset();
   });
 
+  //Update turtles saved count upon page load
+  // $("#counter").replaceAll("savedCount");
+  // console.log(savedCount);
+
+
+
+
 
 });
