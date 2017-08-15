@@ -56,10 +56,11 @@ function notInitMap(id) {
                         phone: phone,
                         email: email,
                         comment: comment,
-                        time: time
+                        time: time,
+                        status: "reported"
                     };
 
-                database.ref("Turtle " + count).push(data);
+                database.ref("Turtle " + count).set(data);
                 database.ref("Count").set(count);
                 resetForm();
 
@@ -117,11 +118,23 @@ firebase.auth().onAuthStateChanged(function(user) {
 })
 
 
+//creates a object called turtles
+var turtles = {};
+
+//sets the value of turtles to the data saved in firebase
+firebase.database().ref().on("value", function(snapshot){
+  turtles = snapshot.val();
+});
+firebase.database().ref().on("value", snap => {
+    turtles = snap.val();
+  });
+
 
 //Send location
-var count = 0;
+count = turtles.Count;
 $("#send").on("click", function(event) {
     event.preventDefault();
+    count = turtles.Count;
     count++;
     notInitMap();
     turtleDiv();
@@ -129,9 +142,10 @@ $("#send").on("click", function(event) {
 });
 
 //Submit form and send location
-var count = 0;
+
 $("#submit").on("click", function(event) {
     event.preventDefault();
+    count = turtles.Count;
     count++;
     notInitMap();
     turtleDiv();
@@ -178,15 +192,6 @@ $("#tab2").on("click", "#next-stage-btn", function(){
   $("#counter").text(savedCount);
   Materialize.toast("This turtle has been moved to SAVED.", 2000);
 });
-
-//creates a object called turtles
-var turtles = {};
-
-//sets the value of turtles to the data saved in firebase
-firebase.database().ref().on("value", snap => {
-    turtles = snap.val();
-  });
-
 
 //////////////////////////////////////////////////////////
 //DOCUMENT.READY
