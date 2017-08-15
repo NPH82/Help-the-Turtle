@@ -51,7 +51,7 @@ main {
 #map {
   margin-bottom: 20px;
   height: 200px;
-	width: 100%;
+  width: 100%;
 }
 
 .card-button {
@@ -73,9 +73,10 @@ main {
 }
 
 #userLocation {
-	height:50px;
-	width: 50px;
+  height: 50px;
+  width: 50px;
 }
+
 
 /*MODALS*/
 
@@ -107,6 +108,7 @@ body {
 main {
   flex: 1 0 auto;
 }
+
 
 /*RESPONSIVE DESIGN*/
 
