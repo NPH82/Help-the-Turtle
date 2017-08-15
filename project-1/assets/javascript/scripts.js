@@ -137,7 +137,7 @@ $("#send").on("click", function(event) {
     count = turtles.Count;
     count++;
     notInitMap();
-    turtleDiv();
+    turtleDiv(false);
     Materialize.toast("Your location has been sent.", 2000);
 });
 
@@ -147,7 +147,7 @@ $("#submit").on("click", function(event) {
     count = turtles.Count;
     count++;
     notInitMap();
-    turtleDiv();
+    turtleDiv(true);
     Materialize.toast("Your report has been sent.", 2000);
 });
 
@@ -160,18 +160,22 @@ function resetForm() {
 }
 
 //Creats turtle card in document
-function turtleDiv() {
+function turtleDiv(noComm) {
     var comment = $("#comment-input").val();
     $("#fullCard").clone().prependTo("#tab1");
     $("#tab1-heading").attr('class', 'no-card hide');
     $("#turtle").attr('class', 'card hoverable show');
     $("#number").empty();
-    $("#number").append("Turtle " + count + "<i class='material-icons right'>more_vert</i>");
     $("#reported").empty();
     $("#reported").append("<p>" + "Reported " + moment().format('MMMM Do YYYY, h:mm a') + "</p>");
     $("#comment").empty();
     $("#comment").append(comment);
     $("#turtle").append("<div id='turtle' class='card hoverable hide");
+    if (noComm) {
+      $("#number").append("Turtle " + count + "<i class='material-icons right'>more_vert</i>");
+    } else {
+      $("#number").append("Turtle " + count);
+    }
 
 }
 
