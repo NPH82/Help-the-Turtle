@@ -62,6 +62,7 @@ function notInitMap(id) {
 
                 database.ref("Turtle " + count).set(data);
                 database.ref("Count").set(count);
+                database.ref("Saved").set(savedCount);
                 resetForm();
 
             },
@@ -144,6 +145,9 @@ $("#send").on("click", function(event) {
 //Submits form and sends location
 $("#submit").on("click", function(event) {
     event.preventDefault();
+    
+    validate();
+    validateEmail();
     count = turtles.Count;
     count++;
     notInitMap();
@@ -196,6 +200,42 @@ $("#tab2").on("click", "#next-stage-btn", function(){
   $("#counter").text(savedCount);
   Materialize.toast("This turtle has been moved to SAVED.", 2000);
 });
+
+// Form validation code will come here.
+function validate() {
+  if( $("#name-input").val() == "" ) {
+   Materialize.toast("Please provide your name.", 2000);
+   $.thisBreaksTheForm.database;
+   return false;
+  }
+         
+  if( $("#phoneNumber-input").val() == "" ) {
+   Materialize.toast("Please provide your phone number.", 2000);
+   $.thisBreaksTheForm.database;
+   return false;
+  }
+
+  if( $("#email-input").val() == "" ) {
+    Materialize.toast("Please provide your email.", 2000);
+    $.thisBreaksTheForm.database;
+    return false;
+  }
+
+  return( true );
+  };
+
+function validateEmail() {
+  var emailID = $("#email-input").val();
+  atpos = emailID.indexOf("@");
+  dotpos = emailID.lastIndexOf(".");
+         
+  if (atpos < 1 || ( dotpos - atpos < 2 )) {
+    Materialize.toast("Please provide your email.", 2000);
+    $.thisBreaksTheForm.database;
+    return false;
+  }
+    return( true );
+};
 
 //////////////////////////////////////////////////////////
 //DOCUMENT.READY
