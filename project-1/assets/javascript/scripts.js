@@ -147,14 +147,22 @@ function turtleDiv() {
 
 }
 
-//Moving turtle card to dispatched
+//Moving turtle card to Dispatched
 $("#tab1").on("click", "#next-stage-btn", function(){
   $("#tab2-heading").attr('class', 'no-card hide');
-  $("#fullCard").prependTo("#tab2");
+  $("#fullCard").appendTo("#tab2");
   Materialize.toast("This turtle has been moved to DISPATCHED.", 2000);
 });
 
-
+//Moving turtle card to Saved
+var savedCount = 0;
+$("#tab2").on("click", "#next-stage-btn", function(){
+  $("#tab3-heading").attr('class', 'no-card hide');
+  $("#tab2").find("#fullCard").appendTo("#tab3");
+  savedCount++;
+  $("#counter").text(savedCount);
+  Materialize.toast("This turtle has been moved to SAVED.", 2000);
+});
 
 
 //////////////////////////////////////////////////////////
