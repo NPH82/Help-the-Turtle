@@ -242,7 +242,7 @@ $("#tab2").on("click", "#next-stage-btn", function() {
     $.ajax({
       method: "POST",
       url: "//formspree.io/umassturtlepower@gmail.com",
-      data: data,
+      data: $("#reportNewTurtle-form").serialize(),
       datatype: "json"
     });
   });
