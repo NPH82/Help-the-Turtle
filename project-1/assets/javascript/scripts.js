@@ -143,10 +143,10 @@ function detectBrowser() {
 
     if (useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1) {
         mapdiv.style.width = '100%';
-        mapdiv.style.height = '100%';
+        mapdiv.style.height = '200px';
     } else {
         mapdiv.style.width = '100%';
-        mapdiv.style.height = '1005';
+        mapdiv.style.height = '100%';
     }
     console.log('detectBrowser');
 }
@@ -256,6 +256,20 @@ $("#tab2").on("click", "#next-stage-btn", function() {
     console.log('move to saved');
 });
 
+//Formspree ajax
+  $("#submit").on("click", function(e) {
+    e.preventDefault();
+    var name = $("#name-input")
+    var email = $("#email-input")
+    var phone = $("#phoneNumber-input")
+    var landmarks = $("#comment-input")
+    $.ajax({
+      method: "POST",
+      url: "//formspree.io/umassturtlepower@gmail.com",
+      data: $("#reportNewTurtle-form").serialize(),
+      datatype: "json"
+    });
+  });
 
 //////////////////////////////////////////////////////////
 //DOCUMENT.READY
@@ -263,25 +277,33 @@ $("#tab2").on("click", "#next-stage-btn", function() {
 
 $(document).ready(function() {
 
-    //FRONT END
+  //FRONT END
 
-    //Parallax page
-    $('.parallax').parallax();
+  //Parallax page
+  $('.parallax').parallax();
 
-    //Sidebar menu
-    $(".button-collapse").sideNav({
-        menuWidth: 250,
-        closeOnClick: true,
-    });
+  //Sidebar menu
+  $(".button-collapse").sideNav({
+    menuWidth: 250,
+    closeOnClick: true,
+  });
 
-    //Floating action button
-    $("#report-button").on("mouseover", function() {
-        $("#report-button").children("a").removeClass("pulse");
-        $("#report-button").children("a").children("i").text("place");
-    });
-    $("#report-button").on("mouseout", function() {
-        $("#report-button").children("a").children("i").text("add");
-    });
+  //Floating action button
+  $("#report-button").on("mouseover", function() {
+    $("#report-button").children("a").removeClass("pulse");
+    $("#report-button").children("a").children("i").text("place");
+  });
+  $("#report-button").on("mouseout", function() {
+    $("#report-button").children("a").children("i").text("add");
+  });
+
+  //Trigger modal
+  $(".modal").modal();
+
+  //Update turtles saved count upon page load
+  // $("#counter").replaceAll("savedCount");
+  // console.log(savedCount);
+
 
     //Trigger modal
     $(".modal").modal();
