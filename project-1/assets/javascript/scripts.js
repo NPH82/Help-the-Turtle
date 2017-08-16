@@ -129,7 +129,6 @@ firebase.database().ref().on("value", function(snapshot) {
 //Sends location
 $("#send").on("click", function(event) {
   event.preventDefault();
-  
   turtleDiv(false);
   notInitMap();
   Materialize.toast("Your location has been sent.", 2000);
@@ -141,8 +140,8 @@ $("#submit").on("click", function(event) {
   validate();
   validateEmail();
   $('#message-modal').modal('close');
-  notInitMap();
   turtleDiv(true);
+  notInitMap();
   Materialize.toast("Your report has been sent.", 2000);
 });
 
@@ -190,7 +189,7 @@ function resetForm() {
   $("#email-input").val("");
 }
 
-//Creats turtle card in document
+//Creates turtle card in document
 function turtleDiv(noComm) {
   var comment = $("#comment-input").val();
   $("#fullCard").clone().prependTo("#tab1");
