@@ -88,6 +88,19 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
+function detectBrowser() {
+  var useragent = navigator.userAgent;
+  var mapdiv = document.getElementById('map');
+
+  if(useragent.indexOf('iPhone') != -1 || useragent.indexOf('Android') != -1) {
+    mapdiv.style.width = '100%';
+    mapdiv.style.height= '100%';
+  } else {
+    mapdiv.style.width = '100%';
+    mapdiv.style.height = '200px';
+  }
+}
+
 //Initializes Firebase
 var config = {
   apiKey: "AIzaSyBZAuUkeBYHmxfplYwuf-7wNHwKUFSLZcU",
@@ -136,6 +149,7 @@ firebase.database().ref().on("value", function(snapshot) {
 //Sends location
 $("#send").on("click", function(event) {
   event.preventDefault();
+  detectBrowser();
   turtleDiv(false);
   notInitMap();
   Materialize.toast("Your location has been sent.", 2000);
@@ -144,6 +158,7 @@ $("#send").on("click", function(event) {
 //Submits form and sends location
 $("#submit").on("click", function(event) {
   event.preventDefault();
+  detectBrowser();
   validate();
   validateEmail();
   $('#message-modal').modal('close');
