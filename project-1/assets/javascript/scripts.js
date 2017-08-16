@@ -151,6 +151,13 @@ function detectBrowser() {
     console.log('detectBrowser');
 }
 
+//creates turtle object
+var turtles = {};
+
+//Sets turtle value to database
+firebase.database.().ref().on("value", function(snapshot) {
+  turtles = snapshot.val();
+})
 
 //Sends location
 $("#send").on("click", function(event) {
