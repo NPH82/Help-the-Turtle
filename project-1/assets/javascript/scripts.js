@@ -86,7 +86,7 @@ function initMap(id) {
                 });
                 marker.setPosition(pos);
                 map.setCenter(pos);
-                map.setZoom(20);
+                map.setZoom(18);
                 map.setOptions({ draggable: false });
                 console.log('geolocation');
 
@@ -155,7 +155,7 @@ function detectBrowser() {
 var turtles = {};
 
 //Sets turtle value to database
-firebase.database.().ref().on("value", function(snapshot) {
+firebase.database().ref().on("value", function(snapshot) {
   turtles = snapshot.val();
 })
 
