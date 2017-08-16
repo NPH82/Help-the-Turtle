@@ -60,9 +60,7 @@ function notInitMap(id) {
             status: "reported"
           };
 
-        database.ref("Turtle " + count).set(data);
-        database.ref("Count").set(count);
-        database.ref("Saved").set(savedCount);
+        database.ref().push(data);
         resetForm();
 
       },
@@ -93,6 +91,7 @@ var config = {
   messagingSenderId: "919793437616"
 };
 firebase.initializeApp(config);
+var database = firebase.database();
 
 //Authenticates Firebase Anonymously
 firebase.auth().signInAnonymously().catch(function(error) {
@@ -126,19 +125,13 @@ var turtles = {};
 firebase.database().ref().on("value", function(snapshot) {
   turtles = snapshot.val();
 });
-firebase.database().ref().on("value", snap => {
-  turtles = snap.val();
-});
-
 
 //Sends location
-count = turtles.Count;
 $("#send").on("click", function(event) {
   event.preventDefault();
-  count = turtles.Count;
-  count++;
-  notInitMap();
+  
   turtleDiv(false);
+  notInitMap();
   Materialize.toast("Your location has been sent.", 2000);
 });
 
@@ -148,8 +141,6 @@ $("#submit").on("click", function(event) {
   validate();
   validateEmail();
   $('#message-modal').modal('close');
-  count = turtles.Count;
-  count++;
   notInitMap();
   turtleDiv(true);
   Materialize.toast("Your report has been sent.", 2000);
@@ -212,9 +203,9 @@ function turtleDiv(noComm) {
   $("#comment").append(comment);
   $("#turtle").append("<div id='turtle' class='card hoverable hide");
   if (noComm) {
-    $("#number").append("Turtle " + count + "<i class='material-icons right'>more_vert</i>");
+    $("#number").append("Turtle " + 1 + "<i class='material-icons right'>more_vert</i>");
   } else {
-    $("#number").append("Turtle " + count);
+    $("#number").append("Turtle " + 1);
   }
 
 }
@@ -227,10 +218,7 @@ $("#tab1").on("click", "#next-stage-btn", function() {
 });
 
 //Moves turtle card from Dispatched to Saved
-var savedCount = turtles.Saved;
 $("#tab2").on("click", "#next-stage-btn", function() {
-  savedCount = turtles.Saved;
-  savedCount++;
   $("#counter").text(turtles.Saved);
   $("#tab3-heading").attr('class', 'no-card hide');
   $(this).parents("#fullCard").prependTo("#tab3");
