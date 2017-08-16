@@ -209,21 +209,20 @@ function turtleDiv(noComm) {
 
 }
 
-//Moves turtle card from Reported to Dispatched
+//Moves turtle card from Reported to In Progress
 $("#tab1").on("click", "#next-stage-btn", function() {
   $("#tab2-heading").attr('class', 'no-card hide');
-  $("#fullCard").appendTo("#tab2");
-  Materialize.toast("This turtle has been moved to DISPATCHED.", 2000);
+  $("#fullCard").prependTo("#tab2");
+  Materialize.toast("This rescue has been marked IN PROGRESS.", 2000);
 });
 
-//Moves turtle card from Dispatched to Saved
+//Moves turtle card from In Progress to Saved
 $("#tab2").on("click", "#next-stage-btn", function() {
   $("#counter").text(turtles.Saved);
   $("#tab3-heading").attr('class', 'no-card hide');
   $(this).parents("#fullCard").prependTo("#tab3");
   $("#tab3").find(".sticky-action").html("");
-
-  Materialize.toast("This turtle has been moved to SAVED.", 2000);
+  Materialize.toast("This turtle has been marked SAVED.", 2000);
 });
 
 
