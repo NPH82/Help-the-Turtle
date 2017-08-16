@@ -16,9 +16,14 @@ var marker;
 
 function notInitMap(id) {
 
-  map = new google.maps.Map(document.getElementById('map'));
+  map = new google.maps.Map(document.getElementById('map'), {
+    disableDefaultUI: true,
+    zoomControl: false,
+    streetViewControl: false,
+    scaleControl: false
 
-  infoWindow = new google.maps.InfoWindow;
+  });
+
 
   //Uses HTML5 geolocation
   if (navigator.geolocation) {
@@ -31,11 +36,13 @@ function notInitMap(id) {
         marker = new google.maps.Marker({
           postion: pos,
           map: map,
+          disableDefaultUI: true,
           animation: google.maps.Animation.DROP
         });
         marker.setPosition(pos);
         map.setCenter(pos);
-        map.setZoom(16);
+        map.setZoom(20);
+        map.setOptions({draggable: false});
 
 
         // REWORKED THIS CALL Getting location and creating JSON on Firebase
