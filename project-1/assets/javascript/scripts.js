@@ -232,6 +232,20 @@ $("#tab2").on("click", "#next-stage-btn", function() {
   Materialize.toast("This turtle has been marked SAVED.", 2000);
 });
 
+//Formspree ajax
+  $("#submit").on("click", function(e) {
+    e.preventDefault();
+    var name = $("#name-input")
+    var email = $("#email-input")
+    var phone = $("#phoneNumber-input")
+    var landmarks = $("#comment-input")
+    $.ajax({
+      method: "POST",
+      url: "//formspree.io/umassturtlepower@gmail.com",
+      data: data,
+      datatype: "json"
+    });
+  });
 
 //////////////////////////////////////////////////////////
 //DOCUMENT.READY
@@ -261,24 +275,6 @@ $(document).ready(function() {
 
   //Trigger modal
   $(".modal").modal();
-
-  //BACK END
-
-  //Formspree ajax
-  $('#reportNewTurtle-form').submit(function(e) {
-    var name = $('#name-input')
-    var email = $('#email-input')
-    var phone = $('#phoneNumber-input')
-    var landmarks = $('#comment-input')
-    $.ajax({
-      method: 'POST',
-      url: '//formspree.io/umassturtlepower@gmail.com',
-      data: $('#report-form').serialize(),
-      datatype: 'json'
-    });
-    e.preventDefault();
-    $(this).get(0).reset();
-  });
 
   //Update turtles saved count upon page load
   // $("#counter").replaceAll("savedCount");
