@@ -4,19 +4,63 @@
 
 //Google Maps API apikey: AIzaSyA4PbxtjFAOdO90WsLjM_SXs_sfUEb7OM0
 
-window.mapsLoaded = false;
+//Initializes Firebase
+var config = {
+    apiKey: "AIzaSyBZAuUkeBYHmxfplYwuf-7wNHwKUFSLZcU",
+    authDomain: "turtle-project.firebaseapp.com",
+    databaseURL: "https://turtle-project.firebaseio.com",
+    projectId: "turtle-project",
+    storageBucket: "",
+    messagingSenderId: "919793437616"
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+console.log('initial firebase');
+
+//Authenticates Firebase Anonymously
+firebase.auth().signInAnonymously().catch(function(error) {
+    //Handling errors
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    if (errorCode === 'auth/operation-not-allowed') {
+        alert('You must enable Anonymous auth in Firebase Console');
+    } else {
+        console.error(error);
+    }
+});
+
+//Creates User Account
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        var isAnonymous = user.isAnonymous;
+        var uid = user.id;
+        console.log("Locating user");
+    } else {
+        console.log("User signed out");
+    }
+});
+
+function startUp () {
+if(window.mapsLoaded = false) {
+detectBrowser();
+console.log("this is running")
+}
+};
 
 function notInitMap() {
-    window.mapsLoaded = true;
-}
+    if(window.mapsLoaded = true) {
+      detectBrowser();
+    }
+    console.log("notInitMap");
+};
 
 //Geolocation
-var map;
+var map, infoWindow;
 var marker;
 
 function initMap(id) {
-
-    detectBrowser();
+    
     map = new google.maps.Map(document.getElementById('map'), {
         disableDefaultUI: true,
         zoomControl: false,
@@ -24,7 +68,7 @@ function initMap(id) {
         scaleControl: false
 
     });
-
+      console.log('map');
 
     //Uses HTML5 geolocation
     if (navigator && navigator.geolocation) {
@@ -44,6 +88,7 @@ function initMap(id) {
                 map.setCenter(pos);
                 map.setZoom(20);
                 map.setOptions({ draggable: false });
+                console.log('geolocation');
 
 
                 // REWORKED THIS CALL Getting location and creating JSON on Firebase
@@ -69,11 +114,14 @@ function initMap(id) {
                     };
 
                 database.ref().push(data);
+                console.log('data push')
                 resetForm();
+
 
             },
             function() {
                 handleLocationError(true, infoWindow, map.getCenter());
+                console.log('handle error')
             })
     } else {
         //Browser doesn't suppport Geolocation
@@ -98,54 +146,11 @@ function detectBrowser() {
         mapdiv.style.height = '100%';
     } else {
         mapdiv.style.width = '100%';
-        mapdiv.style.height = '200px';
+        mapdiv.style.height = '1005';
     }
+    console.log('detectBrowser');
 }
 
-//Initializes Firebase
-var config = {
-    apiKey: "AIzaSyBZAuUkeBYHmxfplYwuf-7wNHwKUFSLZcU",
-    authDomain: "turtle-project.firebaseapp.com",
-    databaseURL: "https://turtle-project.firebaseio.com",
-    projectId: "turtle-project",
-    storageBucket: "",
-    messagingSenderId: "919793437616"
-};
-firebase.initializeApp(config);
-var database = firebase.database();
-
-//Authenticates Firebase Anonymously
-firebase.auth().signInAnonymously().catch(function(error) {
-    //Handling errors
-    var errorCode = error.code;
-    var errorMessage = error.message;
-
-    if (errorCode === 'auth/operation-not-allowed') {
-        alert('You must enable Anonymous auth in Firebase Console');
-    } else {
-        console.error(error);
-    }
-});
-
-//Creates User Account
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        var isAnonymous = user.isAnonymous;
-        var uid = user.id;
-        console.log("Locating user");
-    } else {
-        console.log("User signed out");
-    }
-})
-
-
-//Creates turtle object
-var turtles = {};
-
-//Sets turtle value to database
-firebase.database().ref().on("value", function(snapshot) {
-    turtles = snapshot.val();
-});
 
 //Sends location
 $("#send").on("click", function(event) {
@@ -153,6 +158,7 @@ $("#send").on("click", function(event) {
     turtleDiv(false);
     initMap();
     Materialize.toast("Your location has been sent.", 2000);
+    console.log('send');
 });
 
 //Submits form and sends location
@@ -164,6 +170,7 @@ $("#submit").on("click", function(event) {
     turtleDiv(true);
     initMap();
     Materialize.toast("Your report has been sent.", 2000);
+    console.log('submit');
 });
 
 //Validates form
@@ -208,6 +215,7 @@ function resetForm() {
     $("#name-input").val("");
     $("#phoneNumber-input").val("");
     $("#email-input").val("");
+    console.log('resetForm');
 }
 
 //Creates turtle card in document
@@ -227,7 +235,7 @@ function turtleDiv(noComm) {
     } else {
         $("#number").append("Turtle " + 1);
     }
-
+    console.log('turtleDiv');
 }
 
 //Moves turtle card from Reported to In Progress
@@ -235,6 +243,7 @@ $("#tab1").on("click", "#next-stage-btn", function() {
     $("#tab2-heading").attr('class', 'no-card hide');
     $("#fullCard").prependTo("#tab2");
     Materialize.toast("This rescue has been marked IN PROGRESS.", 2000);
+    console.log('move to inprogress');
 });
 
 //Moves turtle card from In Progress to Saved
@@ -244,6 +253,7 @@ $("#tab2").on("click", "#next-stage-btn", function() {
     $(this).parents("#fullCard").prependTo("#tab3");
     $("#tab3").find(".sticky-action").html("");
     Materialize.toast("This turtle has been marked SAVED.", 2000);
+    console.log('move to saved');
 });
 
 
