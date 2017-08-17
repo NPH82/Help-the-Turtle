@@ -154,6 +154,20 @@ function detectBrowser() {
 //creates turtle object
 var turtles = {};
 
+// var ref = firebase.database().ref();
+// ref.on("value", function(snapshot) {
+//   console.log("turtle-project", snapshot.val());
+// });
+
+
+firebase.database().ref().on("child_added", function(snapshot){    
+var block = '<div><h6>latitude: ' + snapshot.val().Lat + '</h6><br><h6>long: ' + snapshot.val().Long + 
+'</h6><br><h6>comment: ' + snapshot.val().comment + '</h6><br><h6>email: ' + snapshot.val().email + '</h6><br><h6>name: ' + + snapshot.val().name + '</h6><br><h6>phone: '+ snapshot.val().phone + '</h6><br><h6>status: '+ snapshot.val().status + '</h6><br><h6>time: '+ snapshot.val().time + '</h6><br><br></div>';
+  $("#turtleReports").append(block);
+});
+
+
+
 //Sets turtle value to database
 firebase.database().ref().on("value", function(snapshot) {
   turtles = snapshot.val();
