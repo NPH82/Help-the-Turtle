@@ -60,7 +60,7 @@ var map, infoWindow;
 var marker;
 
 function initMap(id) {
-    
+
     map = new google.maps.Map(document.getElementById('map'), {
         disableDefaultUI: true,
         zoomControl: false,
@@ -151,7 +151,7 @@ function detectBrowser() {
     console.log('detectBrowser');
 }
 
-//creates turtle object
+//Creates turtle object
 var turtles = {};
 
 // var ref = firebase.database().ref();
@@ -160,8 +160,8 @@ var turtles = {};
 // });
 
 
-firebase.database().ref().on("child_added", function(snapshot){    
-var block = '<div><h6>latitude: ' + snapshot.val().Lat + '</h6><br><h6>long: ' + snapshot.val().Long + 
+firebase.database().ref().on("child_added", function(snapshot){
+var block = '<div><h6>latitude: ' + snapshot.val().Lat + '</h6><br><h6>long: ' + snapshot.val().Long +
 '</h6><br><h6>comment: ' + snapshot.val().comment + '</h6><br><h6>email: ' + snapshot.val().email + '</h6><br><h6>name: ' + + snapshot.val().name + '</h6><br><h6>phone: '+ snapshot.val().phone + '</h6><br><h6>status: '+ snapshot.val().status + '</h6><br><h6>time: '+ snapshot.val().time + '</h6><br><br></div>';
   $("#turtleReports").append(block);
 });
@@ -321,35 +321,23 @@ $(document).ready(function() {
   //Trigger modal
   $(".modal").modal();
 
-  //Update turtles saved count upon page load
-  // $("#counter").replaceAll("savedCount");
-  // console.log(savedCount);
+  //BACK END
 
-
-    //Trigger modal
-    $(".modal").modal();
-
-    //BACK END
-
-    //Formspree ajax
-    $('#reportNewTurtle-form').submit(function(e) {
-        var name = $('#name-input')
-        var email = $('#email-input')
-        var phone = $('#phoneNumber-input')
-        var landmarks = $('#comment-input')
-        $.ajax({
-            method: 'POST',
-            url: '//formspree.io/umassturtlepower@gmail.com',
-            data: $('#report-form').serialize(),
-            datatype: 'json'
-        });
-        e.preventDefault();
-        $(this).get(0).reset();
-    });
-
-    //Update turtles saved count upon page load
-    // $("#counter").replaceAll("savedCount");
-    // console.log(savedCount);
+  //Formspree ajax
+  $('#reportNewTurtle-form').submit(function(e) {
+      var name = $('#name-input')
+      var email = $('#email-input')
+      var phone = $('#phoneNumber-input')
+      var landmarks = $('#comment-input')
+      $.ajax({
+          method: 'POST',
+          url: '//formspree.io/umassturtlepower@gmail.com',
+          data: $('#report-form').serialize(),
+          datatype: 'json'
+      });
+      e.preventDefault();
+      $(this).get(0).reset();
+  });
 
 
 
