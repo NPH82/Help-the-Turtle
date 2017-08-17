@@ -280,8 +280,10 @@ $("#tab1").on("click", "#next-stage-btn", function() {
 });
 
 //Moves turtle card from In Progress to Saved
+var count = 0;
 $("#tab2").on("click", "#next-stage-btn", function() {
-    $("#counter").text(turtles.Saved);
+    count++;
+    $("#counter").text(count);
     $("#tab3-heading").attr('class', 'no-card hide');
     $(this).parents("#fullCard").prependTo("#tab3");
     $("#tab3").find(".sticky-action").html("");
