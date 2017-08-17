@@ -169,7 +169,7 @@ firebase.database().ref().on("child_added", function(snapshot){
         searchTerm = encodeURIComponent(searchTerm);
         var iframe = document.createElement("iframe");
         iframe.classList.add("map");
-        iframe.src = "https://www.google.com/maps/embed/v1/search?q=" + searchTerm + "&key=AIzaSyChwGcg2hUOX9Uh_qNr8KHMJcenJf0svv8";
+        iframe.src = "https://www.google.com/maps/embed/v1/search?q=" + searchTerm + "&key=AIzaSyChwGcg2hUOX9Uh_qNr8KHMJcenJf0svv8&zoom=18";
         return iframe;
     }
   var block = '<div id="fullCard" class="col s12 m6"><div id="turtle" class="card hoverable show"><div class="card-image"><div id="map" class="col s12 center-align">' + $(turtleLoc).prop('outerHTML') + '</div></div><div class="card-content"><span id="number" class="card-title activator green-text"><i class="material-icons right">more_vert</i></span><h5 id="reported" class="green-text">Reported ' + snapshot.val().time + '</h5></div><div class="card sticky-action"><div class="card-action right-align"><button id="next-stage-btn" class="card-button green btn-flat yellow-text waves-effect waves-light" type="button" name="button">Done</button></div></div><div class="card-reveal"><span class="card-title green-text">Comment<i class="material-icons right">close</i></span><p id="comment">' + snapshot.val().comment + '</p></div></div></div>';
