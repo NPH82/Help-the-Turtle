@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<title>Report a Beached Turtle</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,800" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -22,16 +23,16 @@
 			<ul id="nav-top" class="right hide-on-med-and-down">
 				<li><a href="index.html">REPORT TURTLE</a></li>
 				<li><a href="patrol-instructions.html">PATROL INSTRUCTIONS</a></li>
-				<li><a href="#">HELP</a></li>
+				<li><a href="help.html">HELP</a></li>
 				<li><a href="http://www.turtlerescueleague.com/about" target="blank">ABOUT</a></li>
 			</ul>
 			<ul class="side-nav" id="mobile-nav">
-				<li><a class="waves-effect selected" href="index.html">Report Turtle</a></li>
-				<li><a href="patrol-instructions.html" class="waves-effect">Patrol Instructions</a></li>
+				<li><a class="waves-effect selected" href="index.html"><i class="material-icons">announcement</i>Report Turtle</a></li>
+				<li><a href="patrol-instructions.html" class="waves-effect"><i class="material-icons">info</i>Patrol Instructions</a></li>
 				<div class="divider">
 				</div>
-				<li><a class="small-link waves-effect" href="#"><i class="material-icons">help</i>Help</a></li>
-				<li><a href="http://www.turtlerescueleague.com/about" target="blank" class="small-link waves-effect"><i class="material-icons">link</i>About</a></li>
+				<li><a class="small-link waves-effect" href="help.html"><i class="material-icons">help</i>Help</a></li>
+				<li><a href="http://www.turtlerescueleague.com/about" target="blank" class="small-link waves-effect"><i class="material-icons">launch</i>About</a></li>
 				<div class="divider">
 				</div>
 			</ul>
@@ -39,70 +40,58 @@
 		<div class="nav-content">
 			<ul id="tabs" class="tabs tabs-transparent">
 				<li class="tab"><a class="active" href="#tab1">Reported</a></li>
-				<li class="tab"><a href="#tab2">Rescuing</a></li>
-				<li class="tab"><a href="#tab3">Rescued</a></li>
+				<li class="tab"><a href="#tab2">In Progress</a></li>
+				<li class="tab"><a href="#tab3">Saved <span id="counter" class="new badge yellow darken-1 green-text" data-badge-caption="">0</span></a></li>
 			</ul>
 		</div>
 	</nav>
 
 	<!-- MAIN SECTOIN -->
-	<main>
+	<main class="row">
 
-		<!-- REPORTED TAB -->
-		<div id="tab1" class="col s12">
+		<!-- TAB1: REPORTED -->
+		<div id="tab1">
+			<h5 id="tab1-heading" class="grey-text no-card show center-align">No Turtles Reported</h5>
 
-			<!-- MAIN ROW -->
-			<div class="row" id="main-row">
-				<div class="container">
-					<div class="col s12 m6">
+<div id="turtleReports"></div>
 
-					<!--TURTLE CARDS-->
-						<div class="card hoverable">
-					    <div class="card-image">
-					     <div id="map" class="col s12"></div>
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator green-text">Turtle 12<i class="material-icons right">more_vert</i></span>
-					      <p>Reported Monday, Aug. 10 at 2:30 PM</p>
-					    </div>
-					    <div class="card-reveal">
-					      <span class="card-title green-text">Comments<i class="material-icons right">close</i></span>
-					      <p>Here is some more information about this reported turtle that is revealed once clicked on.</p>
-					    </div>
-					  </div>
+			<!--TURTLE CARD-->
+			<div id="fullCard" class="col s12 m6">
+				<div id="turtle" class="card hoverable hide">
+					<div class="card-image">
+						<div id="map" class="col s12"></div>
 					</div>
-
-					<div class="col s12 m6">
-						<div class="card hoverable">
-					    <div class="card-image">
-					     <div id="map" class='col s12'></div>
-					    </div>
-					    <div class="card-content">
-					      <span class="card-title activator green-text">Turtle 13<i class="material-icons right">more_vert</i></span>
-					      <p>Reported Monday, Aug. 10 at 3:30 PM</p>
-					    </div>
-					    <div class="card-reveal">
-					      <span class="card-title green-text">Comments<i class="material-icons right">close</i></span>
-					      <p>Here is some more information about this reported turtle that is revealed once clicked on.</p>
-					    </div>
-					  </div>
+					<div class="card-content">
+						<span id="number" class="card-title activator green-text"><i class="material-icons right">more_vert</i></span>
+						<p id="reported"></p>
 					</div>
-
+					<div class="card sticky-action">
+						<div class="card-action right-align">
+							<button id="next-stage-btn" class="card-button green btn-flat yellow-text waves-effect waves-light" type="button" name="button">Done</button>
+						</div>
+					</div>
+					<div class="card-reveal">
+						<span class="card-title green-text">Comment<i class="material-icons right">close</i></span>
+						<p id="comment"></p>
+					</div>
 				</div>
 			</div>
+
 		</div>
 
-		<!-- RESCUING TAB -->
-		<div id="tab2" class="col s12"></div>
-			<!-- Begin code here -->
+		<!-- TAB2: IN PROGRESS -->
+		<div id="tab2">
+			<h5 id="tab2-heading" class="grey-text no-card center-align">No Rescues in Progress</h5>
+		</div>
 
-		<!-- RESCUED TAB -->
-		<div id="tab3" class="col s12"></div>
-			<!-- Begin code here -->
+		<!-- TAB3: SAVED -->
+		<div id="tab3">
+			<h5 id="tab3-heading" class="grey-text no-card center-align">No Turtles Saved</h5>
+		</div>
 
-		<!-- FLOATING BUTTONS -->
+		<!-- FLOATING ACTION BUTTON -->
 		<div id="report-button" class="fixed-action-btn hover-to-toggle">
-			<a id="button-link" class="btn-floating waves-effect waves-light pulse btn-large yellow darken-1 modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Send location" href="#location-modal"><i class="material-icons">add</i></a>
+			<a id="button-link" class="btn-floating waves-effect waves-light pulse btn-large yellow darken-2 modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Send location" href="#location-modal"><i class="material-icons">add</i></a>
 			<ul>
 				<li><a class="btn-floating green waves-effect waves-light modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Send location with comments" href="#message-modal"><i class="material-icons">chat</i></a></li>
 				<li><a class="btn-floating blue waves-effect waves-light modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Call Rescue Center" href="#phone-modal"><i class="material-icons">phone</i></a></li>
@@ -121,12 +110,12 @@
 				<!-- FORM -->
 				<div class="row">
 					<div class="col s12">
-						<form action="https://formspree.io/umassturtlepower@gmail.com" method="post">
+						<form id="reportNewTurtle-form">
 
 							<!-- Hidden Input Fields -->
 							<input type="hidden" name="_subject" value="New Turtle Report">
-					    <input type="hidden" name="latitude" value="latitude" id="latitude-input">
-					    <input type="hidden" name="longitude" value="longitude" id="longitude-input">
+							<input type="hidden" name="latitude" value="latitude" id="latitude-input">
+							<input type="hidden" name="longitude" value="longitude" id="longitude-input">
 
 							<!-- Input Row 1 -->
 							<div class="row">
@@ -165,7 +154,7 @@
 
 			<div class="modal-footer">
 				<a href="#!" class="modal-action waves-effect waves-black btn-flat modal-close">Cancel</a>
-				<button id="submit" class="btn green yellow-text waves-effect waves-light modal-close" type="submit" name="action">Submit</button>
+				<button id="submit" class="btn green yellow-text waves-effect waves-light" type="submit" name="action">Submit</button>
 			</div>
 
 		</div>
@@ -213,7 +202,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-	<script async defer src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyA4PbxtjFAOdO90WsLjM_SXs_sfUEb7OM0&callback=initMap"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4PbxtjFAOdO90WsLjM_SXs_sfUEb7OM0&callback=initMap"></script>
 	<script type="text/javascript" src="assets/javascript/scripts.js"></script>
 
 </body>
