@@ -53,7 +53,7 @@
 		<div id="tab1">
 			<h5 id="tab1-heading" class="grey-text no-card show center-align">No Turtles Reported</h5>
 
-<div id="turtleReports"></div>
+			<div id="turtleReports"></div>
 
 			<!--TURTLE CARD-->
 			<div id="fullCard" class="col s12 m6">
@@ -91,10 +91,13 @@
 
 		<!-- FLOATING ACTION BUTTON -->
 		<div id="report-button" class="fixed-action-btn hover-to-toggle">
-			<a id="button-link" class="btn-floating waves-effect waves-light pulse btn-large yellow darken-2 modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Send location" href="#location-modal"><i class="material-icons">add</i></a>
+			<a id="button-link" class="btn-floating waves-effect waves-light pulse btn-large yellow darken-2 modal-trigger btn tooltipped"
+			 data-position="left" data-delay="50" data-tooltip="Send location" href="#location-modal"><i class="material-icons">add</i></a>
 			<ul>
-				<li><a class="btn-floating green waves-effect waves-light modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Send location with comments" href="#message-modal"><i class="material-icons">chat</i></a></li>
-				<li><a class="btn-floating blue waves-effect waves-light modal-trigger btn tooltipped" data-position="left" data-delay="50" data-tooltip="Call Rescue Center" href="#phone-modal"><i class="material-icons">phone</i></a></li>
+				<li><a class="btn-floating green waves-effect waves-light modal-trigger btn tooltipped" data-position="left" data-delay="50"
+					 data-tooltip="Send location with comments" href="#message-modal"><i class="material-icons">chat</i></a></li>
+				<li><a class="btn-floating blue waves-effect waves-light modal-trigger btn tooltipped" data-position="left" data-delay="50"
+					 data-tooltip="Call Rescue Center" href="#phone-modal"><i class="material-icons">phone</i></a></li>
 			</ul>
 		</div>
 
@@ -110,7 +113,7 @@
 				<!-- FORM -->
 				<div class="row">
 					<div class="col s12">
-						<form id="reportNewTurtle-form">
+						<form id="reportNewTurtle-form" method="POST" action="//formspree.io/umassturtlepower@gmail.com">
 
 							<!-- Hidden Input Fields -->
 							<input type="hidden" name="_subject" value="New Turtle Report">
